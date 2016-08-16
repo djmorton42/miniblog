@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="medium-6 medium-centered columns">
+        <h3>Miniblog Login</h3>
+    </div>
+</div>
+
+<%= form_tag(admin_authentications_path, method: :post) do %>
+    <div class="row">
+        <div class="medium-6 medium-centered columns <%= @authentication.errors[:email].any? ? "error" : ""  %>">
+            <%= label_tag(:email, "Email:") %>
+            <%= text_field_tag(:email, @authentication.email) %>
+            <% if @authentication.errors[:email].any? %>
+                <small class="error"><%= @authentication.errors[:email].join(', ') %></small>
+            <% end %>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="medium-6 medium-centered columns <%= @authentication.errors[:password].any? ? "error" : "" %>">
+            <%= label_tag(:password, "Password:") %>
+            <%= password_field_tag(:password) %>
+            
+            <% if @authentication.errors[:password].any? %>
+                <small class="error"><%= @authentication.errors[:password].join(', ') %></small>
+            <% end %>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="medium-6 medium-centered columns">
+            <%= submit_tag("Login", class: "button small round") %>
+        </div>
+    </div>
+<% end %>
