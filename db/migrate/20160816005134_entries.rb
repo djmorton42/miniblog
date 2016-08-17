@@ -1,6 +1,7 @@
 class Entries < ActiveRecord::Migration
   def change
     create_table :entries do |t|
+      t.string :title, null: false
       t.text :entry, null: false
       t.text :summary, null: false
       t.boolean :is_published, null: false, default: false

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :entries
   namespace :admin do
+    root to: 'admin#index'
     resource :authentications, only: [:create, :new, :destroy]
+    resources :entries, only: [:create, :new, :edit, :show, :index]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,4 +1,4 @@
-class Admin::AuthenticationsController < Admin::AdminController
+class Admin::AuthenticationsController < Admin::AdminAreaController
   def new
     @authentication = Authentication.new
   end

@@ -1,0 +1,8 @@
+<h2>Blog Entries</h2>
+
+<table>
+  <tr>
+    <th>Title</th><th>Created</th><th>Updated</th><th>Actions</th>
+  </tr>
+  <%= render partial: "entry_table_row", collection: @entries %>
+</table>

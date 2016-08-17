@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20160816005134) do
   enable_extension "plpgsql"
 
   create_table "entries", force: :cascade do |t|
+    t.string   "title",                        null: false
     t.text     "entry",                        null: false
     t.text     "summary",                      null: false
     t.boolean  "is_published", default: false, null: false

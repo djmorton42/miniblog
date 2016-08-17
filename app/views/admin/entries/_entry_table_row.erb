@@ -1,0 +1,20 @@
+<tr>
+  <td>
+    <%= entry_table_row.title %>
+  </td>
+  <td>
+
+  </td>
+  <td>
+
+  </td>
+  <td>
+    <%= link_to(image_tag('ic_create_black_24dp.png'), edit_admin_entry_path(entry_table_row), method: 'edit') %>
+    <% if entry_table_row.is_published? %>
+      <%= image_tag('ic_visibility_off_black_24dp.png') %>
+    <% else %>
+      <%= image_tag('ic_visibility_black_24dp.png') %>
+    <% end %>
+    <%= image_tag('ic_delete_black_24dp.png') %>
+  </td>
+</tr>
