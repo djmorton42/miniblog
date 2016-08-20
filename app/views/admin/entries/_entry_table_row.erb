@@ -3,18 +3,21 @@
     <%= entry_table_row.title %>
   </td>
   <td>
-
+    <%= entry_table_row.published_at.presence || 'Unpublished'  %>
   </td>
   <td>
-
+    <%= entry_table_row.created_at %>
   </td>
   <td>
-    <%= link_to(image_tag('ic_create_black_24dp.png'), edit_admin_entry_path(entry_table_row), method: 'edit') %>
+    <%= entry_table_row.updated_at %>
+  </td>
+  <td>
+    <%= link_to(image_tag('ic_create_black_24dp.png'), edit_admin_entry_path(entry_table_row)) %>
     <% if entry_table_row.is_published? %>
-      <%= image_tag('ic_visibility_off_black_24dp.png') %>
+      <%= link_to(image_tag('ic_visibility_off_black_24dp.png'), "#{admin_entry_path(entry_table_row)}/unpublish", method: 'post') %>
     <% else %>
-      <%= image_tag('ic_visibility_black_24dp.png') %>
+      <%= link_to(image_tag('ic_visibility_black_24dp.png'), "#{admin_entry_path(entry_table_row)}/publish", method: 'post') %>
     <% end %>
-    <%= image_tag('ic_delete_black_24dp.png') %>
+    <%= link_to(image_tag('ic_delete_black_24dp.png'), admin_entry_path(entry_table_row), method: 'delete') %>
   </td>
 </tr>

@@ -1,8 +1,16 @@
-<h2>Blog Entries</h2>
-
-<table>
-  <tr>
-    <th>Title</th><th>Created</th><th>Updated</th><th>Actions</th>
-  </tr>
-  <%= render partial: "entry_table_row", collection: @entries %>
-</table>
+<div class="row">
+  <h2>Blog Entries</h2>
+</div>
+<div class="row">
+  <div class="small-12 column">
+  <%= link_to(image_tag('ic_note_add_black_24dp.png') + 'Create new blog entry', new_admin_entry_path) %>
+  </div>
+</div>
+<div class="row">
+  <table>
+    <tr>
+      <th>Title</th><th>Published At</th><th>Created</th><th>Updated</th><th>Actions</th>
+    </tr>
+    <%= render partial: "entry_table_row", collection: @entries %>
+  </table>
+</div>

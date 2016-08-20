@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  root 'entry#index'
+  root 'blog#index'
 
   resources :entries
   namespace :admin do
     root to: 'admin#index'
     resource :authentications, only: [:create, :new, :destroy]
-    resources :entries, only: [:create, :new, :edit, :show, :index]
+    resources :entries, only: [:create, :new, :edit, :update, :show, :destroy, :index]
+
+    post 'entries/:id/publish' => 'entries#publish'
+    post 'entries/:id/unpublish' => 'entries#unpublish'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

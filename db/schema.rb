@@ -22,7 +22,11 @@ ActiveRecord::Schema.define(version: 20160816005134) do
     t.text     "summary",                      null: false
     t.boolean  "is_published", default: false, null: false
     t.datetime "published_at"
+    t.boolean  "is_deleted",   default: false, null: false
+    t.datetime "deleted_at"
     t.text     "tags",                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

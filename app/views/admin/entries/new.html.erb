@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="medium-6 columns medium-centered">
+    <h2>Create New Blog Entry</h2>
+  </div>
+</div>
+<div class="row">
+  <%= form_for [:admin, @entry] do |f| %>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @entry.errors[:title].any? ? "error" : "" %>">
+          <%= f.label(:title, "Title:") %>                  
+          <%= f.text_field(:title) %>                            
+          <% if @entry.errors[:title].any? %>                   
+            <small class="error"><%= @entry.errors[:title].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @entry.errors[:tags].any? ? "error" : "" %>">
+          <%= f.label(:tags, "Tags:") %>                  
+          <%= f.text_field(:tags) %>                            
+          <% if @entry.errors[:tags].any? %>                   
+            <small class="error"><%= @entry.errors[:tags].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <div class="medium-12 columns">                          
+        <div class="<%= @entry.errors[:entry].any? ? "error" : "" %>">
+          <%= f.label(:entry, "Entry:") %>                  
+          <%= f.text_area(:entry, rows: 40) %>                            
+          <% if @entry.errors[:entry].any? %>                   
+            <small class="error"><%= @entry.errors[:entry].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <div class="medium-12 columns">                          
+        <div class="<%= @entry.errors[:summary].any? ? "error" : "" %>">
+          <%= f.label(:summary, "Summary:") %>                  
+          <%= f.text_area(:summary, rows: 10) %>                            
+          <% if @entry.errors[:summary].any? %>                   
+            <small class="error"><%= @entry.errors[:summary].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">                          
+        <%= f.submit class: "button round success" %>                       
+      </div> 
+    </div>
+  <% end %>
+</div>
