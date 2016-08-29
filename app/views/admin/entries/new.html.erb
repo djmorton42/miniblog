@@ -28,6 +28,7 @@
       </div>
     </div>
     <div class="row">                                                   
+      <%= link_to(image_tag('ic_insert_photo_black_24dp.png'), '#', "data-reveal-id": 'select-image-modal', id: 'select-image-link') %>
       <div class="medium-12 columns">                          
         <div class="<%= @entry.errors[:entry].any? ? "error" : "" %>">
           <%= f.label(:entry, "Entry:") %>                  
@@ -51,8 +52,12 @@
     </div>
     <div class="row">
       <div class="medium-6 columns">                          
-        <%= f.submit class: "button round success" %>                       
+        <%= f.submit(class: "button round success") %>                       
+        <%= f.submit("Preview", class: "button round") %>
+        <%= link_to("Cancel", admin_entries_path, class: "button round") %>
       </div> 
     </div>
   <% end %>
 </div>
+
+<%= render partial: "common/select_image" %>

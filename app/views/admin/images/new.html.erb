@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="medium-6 columns medium-centered">
+    <h2>Upload New Image</h2>
+  </div>
+</div>
+<div class="row">
+  <%= form_for [:admin, @image] do |f| %>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @image.errors[:title].any? ? "error" : "" %>">
+          <%= f.label(:title, "Title:") %>                  
+          <%= f.text_field(:title) %>                            
+          <% if @image.errors[:title].any? %>                   
+            <small class="error"><%= @image.errors[:title].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        <div class="<%= @image.errors[:upload_file].any? ? "error" : "" %>">
+          <%= f.label(:upload_file, "Select a file to upload:") %>                  
+          <%= f.file_field(:upload_file) %>                            
+          <% if @image.errors[:upload_file].any? %>                   
+            <small class="error"><%= @image.errors[:upload_file].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">                          
+        <%= f.submit(class: "button round success") %>                       
+        <%= link_to("Cancel", admin_entries_path, class: "button round") %>
+      </div> 
+    </div>
+  <% end %>
+</div>

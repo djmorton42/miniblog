@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816005134) do
+ActiveRecord::Schema.define(version: 20160821153000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20160816005134) do
     t.boolean  "is_deleted",   default: false, null: false
     t.datetime "deleted_at"
     t.text     "tags",                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "title",                        null: false
+    t.string   "url_token",                    null: false
+    t.string   "file_name",                    null: false
+    t.string   "content_type",                 null: false
+    t.boolean  "is_published", default: false, null: false
+    t.datetime "published_at"
+    t.boolean  "is_deleted",   default: false, null: false
+    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

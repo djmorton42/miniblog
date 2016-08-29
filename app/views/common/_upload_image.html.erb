@@ -1,0 +1,10 @@
+<div class="reveal-modal" id="image-upload-modal" data-reveal>
+  <div class="row">
+    <%= form_tag('/admin/images', method: "post") %>
+    <%= label_tag(:image, 'Select an image to upload:') %>
+    <%= file_field_tag(:image)  %>
+  </div>
+  <div class="row">
+    <%= link_to('Cancel', '#', class: 'close-reveal-modal button round') %>
+  </div>
+</div>

@@ -15,3 +15,7 @@
  *= require foundation_and_overrides
 
  */
+
+.hidden { display: none; }
+.visible-inline-block { display: inline-block; }
+.visible-block { display: visible-block; }

@@ -1,0 +1,11 @@
+<tr>
+  <td>
+    <%= "#{user_table_row.name} (#{user_table_row.email})"  %>
+  </td>
+  <td>
+    <%= user_table_row.last_login %>
+  </td>
+  <td>
+    <%= link_to(image_tag('ic_create_black_24dp.png'), edit_admin_user_path(user_table_row)) %>
+  </td>
+</tr>

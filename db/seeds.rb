@@ -8,3 +8,5 @@
 
 Entry.create(title: 'This is my first blog entry', summary: 'The first blog I ever wrote', entry: 'This is a bunch of text', is_published: false, tags: '')
 Entry.create(title: 'This is my second blog entry', summary: 'The second blog I ever wrote', entry: 'This is a bunch of text', is_published: false, tags: '')
+
+User.create(email: 'user@example.com', name: 'Some User', password_hash: '$2a$10$3qyhvGbFtW6qK6B3aO/TnuopZ1XD/ZBP.iGT2GHuDRg0gjAAR/gK.')

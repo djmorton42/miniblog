@@ -1,10 +1,22 @@
 <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-        <li class="name">
-            <h1><a href="admin/">Miniblog Admin</a></h1>
-        </li>
-    </ul>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/admin">Miniblog Admin</a></h1>
+    </li>
+  </ul>
 
-    <section class="top-bar-section">
-    </section>
+  <section class="top-bar-section">
+    <ul class="right">
+      <% if @current_user.present? %>
+        <li class="has-dropdown">
+          <%= link_to(@current_user.name, edit_admin_user_path(@current_user)) %>
+          <ul class="dropdown">
+            <li>
+              <%= link_to('Logout', admin_authentications_path, method: 'delete') %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </section>
 </nav>

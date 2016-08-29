@@ -1,4 +1,6 @@
 class Admin::AuthenticationsController < Admin::AdminAreaController
+  skip_before_action :check_authentication, only: [:new, :create]
+
   def new
     @authentication = Authentication.new
   end
@@ -15,7 +17,7 @@ class Admin::AuthenticationsController < Admin::AdminAreaController
       session[:current_user_id] = @authentication.user.id
       @current_user = @authentication.user
     
-      redirect_to admin_path
+      redirect_to admin_root_path
     end
   end
 

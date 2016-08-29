@@ -35,7 +35,7 @@ class Authentication
         authentication = Authentication.new(options)
         
         if authentication.valid?
-            authentication.user = User.includes(:user_organizations).where('email = ?', authentication.email).first
+            authentication.user = User.where(email: authentication.email).first
         end
         
         return authentication
