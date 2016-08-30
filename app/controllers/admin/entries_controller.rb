@@ -8,6 +8,7 @@ class Admin::EntriesController < Admin::AdminAreaController
 
   def edit
     @entry = Entry.find(params[:id])
+    @categories = Category.all
     render :new
   end
 
@@ -15,7 +16,12 @@ class Admin::EntriesController < Admin::AdminAreaController
     @entry = Entry.find(params[:id])
     @entry.update_attributes(entry_params)
 
-    redirect_to admin_entries_path
+    if @entry.errors.any?
+      @categories = Category.all
+      render :new 
+    else
+      redirect_to admin_entries_path
+    end
   end
 
   def destroy
@@ -47,18 +53,25 @@ class Admin::EntriesController < Admin::AdminAreaController
 
   def new
     @entry = Entry.new
+    @categories = Category.all
   end
 
   def create
-    Entry.create(entry_params)   
+    @entry = Entry.create(entry_params)   
 
-    redirect_to admin_entries_path
+    if @entry.errors.any?
+      @categories = Category.all
+      render :new
+    else
+      redirect_to admin_entries_path
+    end
+
   end
 
   private
   def entry_params
     params
       .require(:entry)
-      .permit(:title, :tags, :entry, :summary)
+      .permit(:title, :tags, :entry, :summary, :category_id)
   end
 end

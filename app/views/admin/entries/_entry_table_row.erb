@@ -3,6 +3,9 @@
     <%= entry_table_row.title %>
   </td>
   <td>
+    <%= entry_table_row.category.name %>
+  </td>
+  <td>
     <%= entry_table_row.published_at.presence || 'Unpublished'  %>
   </td>
   <td>

@@ -18,6 +18,17 @@
     </div>
     <div class="row">                                                   
       <div class="medium-6 columns">                          
+        <div class="<%= @entry.errors[:category].any? ? "error" : "" %>">
+          <%= f.label(:category, "Category:") %>                  
+          <%= f.collection_select(:category_id, @categories, :id, :name) %>                            
+          <% if @entry.errors[:category].any? %>                   
+            <small class="error"><%= @entry.errors[:category].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
         <div class="<%= @entry.errors[:tags].any? ? "error" : "" %>">
           <%= f.label(:tags, "Tags:") %>                  
           <%= f.text_field(:tags) %>                            
