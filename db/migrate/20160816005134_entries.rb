@@ -11,5 +11,9 @@ class Entries < ActiveRecord::Migration
       t.text :tags, null: false
       t.timestamps
     end
+
+    add_reference :entries, :category, index: true, null: false         
+    add_foreign_key :entries, :categories, name: "entry_category_fk"
+
   end
 end

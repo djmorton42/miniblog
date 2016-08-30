@@ -16,6 +16,12 @@ ActiveRecord::Schema.define(version: 20160821153000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "entries", force: :cascade do |t|
     t.string   "title",                        null: false
     t.text     "entry",                        null: false
@@ -27,7 +33,10 @@ ActiveRecord::Schema.define(version: 20160821153000) do
     t.text     "tags",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id",                  null: false
   end
+
+  add_index "entries", ["category_id"], name: "index_entries_on_category_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "title",                        null: false
@@ -51,4 +60,5 @@ ActiveRecord::Schema.define(version: 20160821153000) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "entries", "categories", name: "entry_category_fk"
 end

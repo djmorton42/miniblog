@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     root to: 'admin#index'
     resource :authentications, only: [:create, :new, :destroy]
     resources :entries, only: [:create, :new, :edit, :update, :show, :destroy, :index]
+    resources :categories, only: [:create, :new, :edit, :update, :show, :index]
 
     resources :images, only: [:create, :new, :show, :destroy, :index]
     resources :users, only: [:create, :new, :edit, :update, :show, :index]

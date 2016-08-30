@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="medium-6 columns medium-centered">
+    <h2><%= @category.new_record? ? "Create New" : "Edit" %> Blog Category</h2>
+  </div>
+</div>
+<div class="row">
+  <%= form_for [:admin, @category] do |f| %>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @category.errors[:name].any? ? "error" : "" %>">
+          <%= f.label(:name, "Category Name:") %>                  
+          <%= f.text_field(:name) %>                            
+          <% if @category.errors[:name].any? %>                   
+            <small class="error"><%= @category.errors[:name].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">                          
+        <%= f.submit(class: "button round success") %>                       
+        <%= link_to("Cancel", admin_categories_path, class: "button round") %>
+      </div> 
+    </div>
+  <% end %>
+</div>
