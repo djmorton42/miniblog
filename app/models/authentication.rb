@@ -18,7 +18,6 @@ end
 class Authentication
     include ActiveModel::Validations      
     include ActiveModel::Conversion       
-    #include ActiveModel::SerializerSupport
     include BCrypt
     extend ActiveModel::Naming            
                                                 

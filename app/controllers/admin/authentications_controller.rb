@@ -16,6 +16,7 @@ class Admin::AuthenticationsController < Admin::AdminAreaController
     else
       session[:current_user_id] = @authentication.user.id
       @current_user = @authentication.user
+      @current_user.update_attributes(last_login: DateTime.now)
     
       redirect_to admin_root_path
     end

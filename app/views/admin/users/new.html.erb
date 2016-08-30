@@ -31,11 +31,11 @@
 
     <div class="row">                                                   
       <div class="medium-6 columns">                          
-        <div class="<%= @user.errors[:password].any? ? "error" : "" %>">
-          <%= f.label(:password, "Password:") %>                  
-          <%= f.password_field(:password) %>                            
-          <% if @user.errors[:password].any? %>                   
-            <small class="error"><%= @user.errors[:password].join(', ') %></small>
+        <div class="<%= @user.errors[:input_password].any? ? "error" : "" %>">
+          <%= f.label(:input_password, "Password:") %>                  
+          <%= f.password_field(:input_password) %>                            
+          <% if @user.errors[:input_password].any? %>                   
+            <small class="error"><%= @user.errors[:input_password].join(', ') %></small>
           <% end %>                                                   
         </div>              
       </div>
@@ -43,11 +43,11 @@
 
     <div class="row">                                                   
       <div class="medium-6 columns">                          
-        <div class="<%= @user.errors[:password_confirmation].any? ? "error" : "" %>">
-          <%= f.label(:password_confirmation, "Confirm Password:") %>                  
-          <%= f.password_field(:password_confirmation) %>                            
-          <% if @user.errors[:password_confirmation].any? %>                   
-            <small class="error"><%= @user.errors[:password_confirmation].join(', ') %></small>
+        <div class="<%= @user.errors[:input_password_confirmation].any? ? "error" : "" %>">
+          <%= f.label(:input_password_confirmation, "Confirm Password:") %>                  
+          <%= f.password_field(:input_password_confirmation) %>                            
+          <% if @user.errors[:input_password_confirmation].any? %>                   
+            <small class="error"><%= @user.errors[:input_password_confirmation].join(', ') %></small>
           <% end %>                                                   
         </div>              
       </div>

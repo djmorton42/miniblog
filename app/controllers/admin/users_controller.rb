@@ -9,7 +9,7 @@ class Admin::UsersController < Admin::AdminAreaController
   
   def create
     @user = User.create(entry_params)
- 
+
     if @user.errors.any?
       render :new
     else
@@ -38,6 +38,6 @@ class Admin::UsersController < Admin::AdminAreaController
   def entry_params
     params
       .require(:user)
-      .permit(:password, :password_confirm, :name, :email)
+      .permit(:input_password, :input_password_confirmation, :name, :email)
   end
 end
