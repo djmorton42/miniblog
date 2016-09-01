@@ -1,7 +1,9 @@
-var ready;                                                                      
+var ready, entryArea, summaryArea;                                                                      
 ready = function() {                                    
-
-  var entryCursorPosition = 0
+  $(document).foundation();                                                     
+  
+  entryArea = new SimpleMDE({ element: $("#entry_entry")[0] })
+  summaryArea = new SimpleMDE({ element: document.getElementById('entry_summary') })
 
   $('#select-image-link').on('click', function() {
     loadPublishedImages();
@@ -13,7 +15,7 @@ ready = function() {
     $select = $('#image-select');
     $entryArea = $('#entry-entry'); 
 
-    insertAtCursor($entryArea, $select.val());
+    entryArea.drawSpecificImage(imageToUrl($select.val()));
   });
 
   $('#cancel-image-button').on('click', function() {
@@ -22,23 +24,8 @@ ready = function() {
 
 };     
 
-function insertAtCursor(myField, myValue) {
-    //IE support
-    if (document.selection) {
-        myField.focus();
-        sel = document.selection.createRange();
-        sel.text = myValue;
-    }
-    //MOZILLA and others
-    else if (myField.selectionStart || myField.selectionStart == '0') {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        myField.value = myField.value.substring(0, startPos)
-            + myValue
-            + myField.value.substring(endPos, myField.value.length);
-    } else {
-        myField.value += myValue;
-    }
+function imageToUrl(imageUUID) {
+  return window.location.protocol + "//" + window.location.host + '/images/' + imageUUID
 }
 
 function loadPublishedImages() {
@@ -56,10 +43,5 @@ function loadPublishedImages() {
   });
 }
 
-/*
-select-image-modal
-select-image-button
-cancel-image-button
-*/
 $(document).ready(ready);                                                       
-$(document).on('page:load', ready);         
+$(document).on('turbolinks:load', ready);         

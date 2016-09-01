@@ -1,3 +1,4 @@
+<%= javascript_include_tag "admin/entries" %>
 <div class="row">
   <div class="medium-6 columns medium-centered">
     <h2><%= @entry.new_record? ? "Create New" : "Edit" %> Blog Entry</h2>
@@ -70,5 +71,6 @@
     </div>
   <% end %>
 </div>
+
 
 <%= render partial: "common/select_image" %>
