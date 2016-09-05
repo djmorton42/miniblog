@@ -10,7 +10,8 @@ class ImagesController < ApplicationController
   def banner
     settings = Setting.all.first
     banner_image = settings.banner_image
-    
+
+    response.headers["Expires"] = 1.hour.from_now.httpdate
     if banner_image.present? && banner_image.is_published?
       send_image(banner_image.url_token, banner_image.content_type)
     else
