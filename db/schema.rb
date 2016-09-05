@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904141754) do
+ActiveRecord::Schema.define(version: 20160905133816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,12 +52,13 @@ ActiveRecord::Schema.define(version: 20160904141754) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string   "blog_title",    null: false
-    t.string   "blog_subtitle", null: false
-    t.boolean  "display_bio",   null: false
-    t.text     "bio",           null: false
+    t.string   "blog_title",      null: false
+    t.string   "blog_subtitle",   null: false
+    t.boolean  "display_bio",     null: false
+    t.text     "bio",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "banner_image_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,4 +71,5 @@ ActiveRecord::Schema.define(version: 20160904141754) do
   end
 
   add_foreign_key "entries", "categories", name: "entry_category_fk"
+  add_foreign_key "settings", "images", column: "banner_image_id", name: "settings_banner_image_fk"
 end

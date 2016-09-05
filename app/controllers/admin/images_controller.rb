@@ -1,4 +1,7 @@
 class Admin::ImagesController < Admin::AdminAreaController
+  MAX_FILE_SIZE = 20_000_000
+  CONTENT_TYPE_WHITELIST = ['image/jpeg', 'image/gif', 'image/png'].freeze
+
   def index
     @images = Image.available_images
 
@@ -40,23 +43,39 @@ class Admin::ImagesController < Admin::AdminAreaController
   end
 
   def create
-    #TODO Add transactional behaviour to delete file if the image can not be created
     uploaded_io = params[:image][:upload_file]
    
     image_uuid = SecureRandom.uuid
-
-    File.open(Rails.root.join('public', 'uploads', image_uuid), 'wb') do |file|
-      file.write(uploaded_io.read)
-    end 
   
-    image = Image.new
-    image.title = params[:image][:title] 
-    image.url_token = image_uuid
-    image.file_name = uploaded_io.original_filename
-    image.content_type = uploaded_io.content_type
-    image.save 
+    Image.transaction do
 
-    redirect_to admin_images_path
+      @image = Image.new
+      if uploaded_io.nil?
+        @image.errors.add(:upload_file, 'File must be selected to upload')
+      elsif uploaded_io.size > MAX_FILE_SIZE
+        @image.errors.add(:upload_file, 'File must be less than 20 MB')
+      elsif CONTENT_TYPE_WHITELIST.exclude?(uploaded_io.content_type)
+        @image.errors.add(:upload_file, 'File must be a jpeg, png or gif')
+      else
+        @image.title = params[:image][:title] 
+        @image.url_token = image_uuid
+        @image.file_name = uploaded_io.original_filename
+        @image.content_type = uploaded_io.content_type
+        @image.save 
+      end
+      
+      if @image.errors.any?
+        render :new   
+      else
+        filename = Rails.root.join('public', 'uploads', image_uuid)
+
+        File.open(filename, 'wb') do |file|
+          file.write(uploaded_io.read)
+        end 
+
+        redirect_to admin_images_path
+      end
+    end
   end
 
   private

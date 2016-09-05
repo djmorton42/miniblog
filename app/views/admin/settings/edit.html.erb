@@ -28,6 +28,14 @@
         </div>              
       </div>
     </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        <div>
+          <%= f.label(:banner_image, "Banner Image:") %>
+          <%= f.collection_select(:banner_image_id, @images.dup.unshift(Image.new(title: 'None')), :id, :title) %>                            
+        </div>
+      </div>
+    </div>
     <div class="row">                                                   
       <div class="medium-6 columns">                          
         <div class="<%= @settings.errors[:display_bio].any? ? "error" : "" %>">

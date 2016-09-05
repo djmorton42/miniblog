@@ -1,5 +1,6 @@
 <div>
   <h3><%= link_to(entry_summary.title, entry_path(entry_summary)) %></h4>
+  <p><em>Published at <%= format_datetime(entry_summary.published_at) %> in '<strong><%= entry_summary.category.name %></strong>'</em></p>
   <%= markdown.render(entry_summary.summary).html_safe %>
   <hr />
 </div>

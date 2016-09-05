@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     post 'entries/:id/publish' => 'entries#publish'
     post 'entries/:id/unpublish' => 'entries#unpublish'
     
+    post 'images/banner' => 'images#set_banner'
     post 'images/:id/publish' => 'images#publish'
     post 'images/:id/unpublish' => 'images#unpublish'
   end

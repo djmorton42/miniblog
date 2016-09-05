@@ -1,4 +1,6 @@
 class Image < ActiveRecord::Base
+  validates :title, presence: true, length: { maximum: 50 }
+
   def self.published_images
     Image
       .where(is_published: true)
