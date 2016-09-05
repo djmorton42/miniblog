@@ -7,6 +7,7 @@
 
   <section class="top-bar-section">
     <ul class="right">
+      <li><%= link_to('Goto Blog', root_path) %></li>
       <% if @current_user.present? %>
         <li class="has-dropdown">
           <%= link_to(@current_user.name, edit_admin_user_path(@current_user)) %>

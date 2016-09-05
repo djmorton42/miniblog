@@ -1,0 +1,5 @@
+<div>
+  <h3><%= link_to(entry_summary.title, entry_path(entry_summary)) %></h4>
+  <%= markdown.render(entry_summary.summary).html_safe %>
+  <hr />
+</div>

@@ -1,0 +1,60 @@
+<%= javascript_include_tag "admin/settings" %>
+<div class="row">
+  <div class="medium-6 columns medium-centered">
+    <h2>Edit Blog Settings</h2>
+  </div>
+</div>
+<div class="row">
+  <%= form_for [:admin, @settings], url: {controller: 'settings', action: 'update'}, method: 'patch' do |f| %>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @settings.errors[:blog_title].any? ? "error" : "" %>">
+          <%= f.label(:blog_title, "Blog Title:") %>                  
+          <%= f.text_field(:blog_title) %>                            
+          <% if @settings.errors[:blog_title].any? %>                   
+            <small class="error"><%= @settings.errors[:blog_title].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @settings.errors[:blog_subtitle].any? ? "error" : "" %>">
+          <%= f.label(:blog_subtitle, "Blog Subtitle:") %>                  
+          <%= f.text_field(:blog_subtitle) %>                            
+          <% if @settings.errors[:blog_subtitle].any? %>                   
+            <small class="error"><%= @settings.errors[:blog_subtitle].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @settings.errors[:display_bio].any? ? "error" : "" %>">
+          <%= f.label(:display_bio, "Display Bio:") %>                  
+          <%= f.check_box(:display_bio) %>                            
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <%= link_to(image_tag('ic_insert_photo_black_24dp.png'), '#', "data-reveal-id": 'select-image-modal', id: 'select-image-link') %>
+      <div class="medium-12 columns">                          
+        <div class="<%= @settings.errors[:bio].any? ? "error" : "" %>">
+          <%= f.label(:bio, "Bio:") %>                  
+          <%= f.text_area(:bio, rows: 40) %>                            
+          <% if @settings.errors[:bio].any? %>                   
+            <small class="error"><%= @settings.errors[:bio].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">                          
+        <%= f.submit(class: "button round success") %>                       
+        <%= link_to("Cancel", admin_root_path, class: "button round") %>
+      </div> 
+    </div>
+  <% end %>
+</div>
+
+<%= render partial: "common/select_image" %>

@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   resources :entries
   resources :images, only: [:show]
-  namespace :admin do
+
+namespace :admin do
     root to: 'admin#index'
     resource :authentications, only: [:create, :new, :destroy]
+    resource :settings, only: [:show, :update]
     resources :entries, only: [:create, :new, :edit, :update, :show, :destroy, :index]
     resources :categories, only: [:create, :new, :edit, :update, :show, :index]
 

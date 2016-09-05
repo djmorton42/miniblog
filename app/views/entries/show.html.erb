@@ -1,0 +1,15 @@
+<h1>This is a blog</h1>
+<h2>This is a blog subtitle</h2>
+
+<div style="margin-left:20px; width:90%, max-width:1440px;">
+  <div style="width:66%; min-width:500px; float:left;">
+    <div>
+      <h3><%= @entry.title %></h4>
+      <h4>From '<%= @entry.category.name %>'</h2>
+      <%= @markdown.render(@entry.entry).html_safe %>
+    </div>
+  </div>
+  <div style="margin-left:20px; width:400px; float:left;">
+    <%= render partial: "common/search" %>
+    <%= render partial: "common/bio", locals: { markdown: @markdown, settings: @settings } %> </div>
+</div>

@@ -1,1 +1,13 @@
-<h1>This is the list all blog posts page</h1>
+
+<h1><%= @settings.blog_title %></h1>
+<h2><%= @settings.blog_subtitle %></h2>
+
+<div style="margin-left:20px; width:90%, max-width:1440px;">
+  <div style="width:66%; min-width:500px; float:left;">
+    <%= render partial: "entry_summary", collection: @entries, locals:  { markdown: @markdown } %>
+  </div>
+  <div style="margin-left:20px; width:400px; float:left;">
+    <%= render partial: "common/search" %>
+    <%= render partial: "common/bio", locals: { markdown: @markdown, settings: @settings } %>
+  </div>
+</div>

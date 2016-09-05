@@ -1,4 +1,4 @@
-var ready, entryArea, summaryArea, runReady = false;                                                                      
+var ready, bioArea, runReady = false;
 
 ready = function() {                                    
   if (runReady) {
@@ -9,8 +9,7 @@ ready = function() {
 
   $(document).foundation();                                                     
   
-  entryArea = new SimpleMDE({ element: $("#entry_entry")[0] })
-  summaryArea = new SimpleMDE({ element: document.getElementById('entry_summary') })
+  bioArea = new SimpleMDE({ element: $("#setting_bio")[0] })
 
   $('#select-image-link').on('click', function() {
     loadPublishedImages();
@@ -20,9 +19,8 @@ ready = function() {
   $('#select-image-button').on('click', function() {
     $('#select-image-modal').foundation('reveal', 'close');
     $select = $('#image-select');
-    $entryArea = $('#entry-entry'); 
 
-    entryArea.drawSpecificImage(imageToUrl($select.val()));
+    bioArea.drawSpecificImage(imageToUrl($select.val()));
   });
 
   $('#cancel-image-button').on('click', function() {
