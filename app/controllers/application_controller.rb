@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   after_action :track_request
+  around_action :add_expires_header
 
   def track_request
     Tracker.create(
@@ -15,5 +16,10 @@ class ApplicationController < ActionController::Base
         accept_language: request.accept_language,
         x_forwarded_for:  request.headers['x-forwarded-for']
     )
+  end
+
+  def add_expires_header
+    yield
+    response.headers["Expires"] = 1.hour.from_now.httpdate
   end
 end
