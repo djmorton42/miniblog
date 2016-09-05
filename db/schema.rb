@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905133816) do
+ActiveRecord::Schema.define(version: 20160905160557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(version: 20160905133816) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "banner_image_id"
+  end
+
+  create_table "trackers", force: :cascade do |t|
+    t.integer  "status_code",     null: false
+    t.string   "user_agent",      null: false
+    t.string   "source_ip",       null: false
+    t.string   "url",             null: false
+    t.string   "referer"
+    t.string   "accept_language"
+    t.string   "x_forwarded_for"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

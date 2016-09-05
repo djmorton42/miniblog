@@ -8,7 +8,11 @@
   <div style="width:66%; min-width:500px; float:left;">
     <h3>Category: <%= @category.name %></h3>
     <hr />
-    <%= render partial: "common/entry_summary", collection: @entries, locals:  { markdown: @markdown } %>
+    <% if @entries.any? %>
+      <%= render partial: "common/entry_summary", collection: @entries, locals:  { markdown: @markdown } %>
+    <% else %>
+      <p>There are presently no blog posts in this category!</p>
+    <% end %>
   </div>
   <div style="margin-left:20px; width:400px; float:left;">
     <%= render partial: "common/search" %>

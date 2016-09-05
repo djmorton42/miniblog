@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'blog#index'
 
-  resources :entries
+  resources :entries, only: [:show]
  
   get 'images/banner' => 'images#banner'
   
