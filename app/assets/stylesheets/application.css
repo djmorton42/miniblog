@@ -20,3 +20,38 @@
 .hidden { display: none; }
 .visible-inline-block { display: inline-block; }
 .visible-block { display: visible-block; }
+
+body {
+    font-family: 'Merriweather', serif;
+}
+
+body.blog {
+    background:#ffffff url('http://localhost:3000/images/banner') no-repeat left top;
+}
+
+.header {
+  height:260px;
+  margin-bottom:3em;
+  margin-top:2em;
+  margin-left:2em;
+}
+                
+h1 {
+  font-family: 'Playfair Display', serif;
+}
+h2 {
+  font-family: 'Playfair Display', serif;
+}
+h3 {
+  font-family: 'Playfair Display', serif;
+}
+h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+.categories ul {
+  list-style-type:none;
+  display:inline;
+}
+
+

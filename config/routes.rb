@@ -2,9 +2,14 @@ Rails.application.routes.draw do
   root 'blog#index'
 
   resources :entries
+ 
+  get 'images/banner' => 'images#banner'
+  
   resources :images, only: [:show]
 
-namespace :admin do
+  get 'category/:name' => 'categories#show'
+
+  namespace :admin do
     root to: 'admin#index'
     resource :authentications, only: [:create, :new, :destroy]
     resource :settings, only: [:show, :update]

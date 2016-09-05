@@ -9,6 +9,12 @@ class ImagesController < ApplicationController
     send_data(open(file_name_on_disk, "rb") { |f| f.read }, type: image.content_type, disposition: 'inline')
   end
 
+  def banner
+    file_name_on_disk = Rails.root.join('public', 'uploads', 'banner.jpg')
+    
+    send_data(open(file_name_on_disk, "rb") { |f| f.read }, type: 'image/jpeg', disposition: 'inline')
+  end
+
   def index
     images = Image.where(is_published: true).order(published_date: :desc)
   end
