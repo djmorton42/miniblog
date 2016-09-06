@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   def populate_default_models
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
     @settings = Setting.all.first
+    @categories = Category.order(:name).all
   end
 
   def track_request

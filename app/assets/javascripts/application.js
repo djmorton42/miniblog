@@ -15,6 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require simplemde
+//= require jqColorPicker.min
 
 var ready;                                                                      
 ready = function() {                                                            

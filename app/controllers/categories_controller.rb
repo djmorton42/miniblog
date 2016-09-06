@@ -7,9 +7,5 @@ class CategoriesController < ApplicationController
     raise ActionController::RoutingError.new('Not Found') unless @category.present?
     
     @entries = @category.entries.where(is_published: true).order(:published_at).all
-
-    @categories = Category
-      .order(:name)
-      .all
   end
 end

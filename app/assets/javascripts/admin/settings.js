@@ -8,7 +8,9 @@ ready = function() {
   }
 
   $(document).foundation();                                                     
-  
+
+  $('.color-picker').colorPicker();
+
   bioArea = new SimpleMDE({ element: $("#setting_bio")[0] })
   copyrightArea = new SimpleMDE({ element: $("#setting_copyright")[0] })
   

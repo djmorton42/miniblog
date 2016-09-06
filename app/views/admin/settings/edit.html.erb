@@ -28,6 +28,17 @@
         </div>              
       </div>
     </div>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @settings.errors[:title_color].any? ? "error" : "" %>">
+          <%= f.label(:title_color, "Title Color:") %>                  
+          <%= f.text_field(:title_color, class: 'color-picker') %>                            
+          <% if @settings.errors[:title_color].any? %>                   
+            <small class="error"><%= @settings.errors[:title_color].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
     <div class="row">
       <div class="medium-6 columns">
         <div>

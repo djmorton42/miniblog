@@ -22,6 +22,13 @@ class Admin::SettingsController < Admin::AdminAreaController
   def settings_params
     params
       .require(:setting)
-      .permit(:blog_title, :blog_subtitle, :display_bio, :bio, :banner_image_id, :copyright)
+      .permit(
+        :blog_title, 
+        :blog_subtitle, 
+        :title_color, 
+        :display_bio, 
+        :bio, 
+        :banner_image_id, 
+        :copyright)
   end
 end
