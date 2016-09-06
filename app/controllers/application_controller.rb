@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   after_action :track_request
   around_action :add_expires_header
+  before_action :populate_default_models
+
+  def populate_default_models
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
+    @settings = Setting.all.first
+  end
 
   def track_request
     Tracker.create(

@@ -8,9 +8,6 @@ class CategoriesController < ApplicationController
     
     @entries = @category.entries.where(is_published: true).order(:published_at).all
 
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
-    @settings = Setting.all.first
-    
     @categories = Category
       .order(:name)
       .all

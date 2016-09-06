@@ -1,4 +1,4 @@
-var ready, bioArea, runReady = false;
+var ready, bioArea, copyrightArea, runReady = false;
 
 ready = function() {                                    
   if (runReady) {
@@ -10,8 +10,18 @@ ready = function() {
   $(document).foundation();                                                     
   
   bioArea = new SimpleMDE({ element: $("#setting_bio")[0] })
+  copyrightArea = new SimpleMDE({ element: $("#setting_copyright")[0] })
+  
+  var areaToModify = null;
 
-  $('#select-image-link').on('click', function() {
+  $('#select-bio-image-link').on('click', function() {
+    areaToModify = bioArea;
+    loadPublishedImages();
+    $('#select-image-modal').foundation('reveal', 'open');
+  });
+  
+  $('#select-copyright-image-link').on('click', function() {
+    areaToModify = copyrightArea;
     loadPublishedImages();
     $('#select-image-modal').foundation('reveal', 'open');
   });
@@ -20,7 +30,7 @@ ready = function() {
     $('#select-image-modal').foundation('reveal', 'close');
     $select = $('#image-select');
 
-    bioArea.drawSpecificImage(imageToUrl($select.val()));
+    areaToModify.drawSpecificImage(imageToUrl($select.val()));
   });
 
   $('#cancel-image-button').on('click', function() {

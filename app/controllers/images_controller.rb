@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  skip_before_action :populate_default_models 
+
   def show
     image = Image.where(url_token: params[:id], is_published: true).first
 

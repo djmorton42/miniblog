@@ -45,13 +45,25 @@
       </div>
     </div>
     <div class="row">                                                   
-      <%= link_to(image_tag('ic_insert_photo_black_24dp.png'), '#', "data-reveal-id": 'select-image-modal', id: 'select-image-link') %>
+      <%= link_to(image_tag('ic_insert_photo_black_24dp.png'), '#', "data-reveal-id": 'select-image-modal', id: 'select-bio-image-link') %>
       <div class="medium-12 columns">                          
         <div class="<%= @settings.errors[:bio].any? ? "error" : "" %>">
           <%= f.label(:bio, "Bio:") %>                  
           <%= f.text_area(:bio, rows: 40) %>                            
           <% if @settings.errors[:bio].any? %>                   
             <small class="error"><%= @settings.errors[:bio].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <%= link_to(image_tag('ic_insert_photo_black_24dp.png'), '#', "data-reveal-id": 'select-image-modal', id: 'select-copyright-image-link') %>
+      <div class="medium-12 columns">                          
+        <div class="<%= @settings.errors[:copyright].any? ? "error" : "" %>">
+          <%= f.label(:copyright, "Copyright:") %>                  
+          <%= f.text_area(:copyright, rows: 40) %>                            
+          <% if @settings.errors[:copyright].any? %>                   
+            <small class="error"><%= @settings.errors[:copyright].join(', ') %></small>
           <% end %>                                                   
         </div>              
       </div>
