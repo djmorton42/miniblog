@@ -9,11 +9,9 @@ WORKDIR $APP_DIR
 
 COPY Gemfile Gemfile
 RUN gem install bundler
-RUN bundle install
+RUN bundle install --without=test,development
 
 ENV RAILS_ENV production
-ENV WORKER_PROCESSES 4
-ENV LISTEN_ON 0.0.0.0:8080
 
 RUN rm -rf /etc/nginx/sites-available/default
 COPY container/nginx.conf /etc/nginx/sites-available/miniblog.conf
