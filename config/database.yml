@@ -85,4 +85,5 @@ test:
 production:
   <<: *default
   database: miniblog
+  host: <%= ENV['MINIBLOG_DATABASE_HOST'] %>
   password: <%= ENV['MINIBLOG_DATABASE_PASSWORD'] %>
