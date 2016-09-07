@@ -1,6 +1,7 @@
 if Rails.env == 'production'
   general_category = Category.create(name: 'General')
   User.new(email: 'user@example.com', name: 'Some User', password_hash: '$2a$10$3qyhvGbFtW6qK6B3aO/TnuopZ1XD/ZBP.iGT2GHuDRg0gjAAR/gK.').save(validate: false)
+  Setting.new(blog_title: '', blog_subtitle: '', display_bio: false, bio: '', title_color: '#000000', copyright: '')
 elsif Rails.env == 'development'
   general_category = Category.create(name: 'General')
 
