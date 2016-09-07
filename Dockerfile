@@ -12,6 +12,7 @@ RUN gem install bundler
 RUN bundle install --without=test,development
 
 ENV RAILS_ENV production
+ENV WORKER_PROCESSES 4
 
 RUN rm -rf /etc/nginx/sites-available/default
 COPY container/nginx.conf /etc/nginx/sites-available/miniblog.conf
