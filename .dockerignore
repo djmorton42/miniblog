@@ -1,0 +1,10 @@
+.git
+.gitignore
+./db
+./log/*
+./tmp/*
+reset-data.sh
+./public/uploads/*
+./test
+.byebug_history
+Gemfile.lock

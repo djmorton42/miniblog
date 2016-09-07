@@ -33,7 +33,7 @@ gem 'foundation-rails', '5.5.3.2'
 
 # Use Unicorn as the app server
 gem 'unicorn'
-
+gem 'foreman'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
