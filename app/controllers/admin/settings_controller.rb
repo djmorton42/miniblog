@@ -2,7 +2,7 @@ class Admin::SettingsController < Admin::AdminAreaController
 
   def show
     @settings = Setting.all.first 
-    @images = Image.where(is_published: true).order(:title).all
+    @images = Image.where(is_published: true, is_deleted: false).order(:title).all
     render :edit
   end
 
@@ -12,7 +12,7 @@ class Admin::SettingsController < Admin::AdminAreaController
     @settings.update_attributes(settings_params)
 
     if @settings.errors.any?
-      @images = Image.where(is_published: true).order(:title).all
+      @images = Image.where(is_published: true, is_deleted: false).order(:title).all
       render :edit
     else
       redirect_to admin_root_path
