@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   skip_before_action :populate_default_models 
 
   def show
-    image = Image.where(url_token: params[:id], is_published: true).first
+    image = Image.where(url_token: params[:id], is_published: true, is_deleted: false).first
 
     ActionController::RoutingError.new('Not Found') unless image.present?
 
@@ -27,6 +27,6 @@ class ImagesController < ApplicationController
   end
 
   def index
-    images = Image.where(is_published: true).order(published_date: :desc)
+    images = Image.where(is_published: true, is_deleted: false).order(published_date: :desc)
   end
 end

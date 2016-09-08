@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
 
   def self.published_images
     Image
-      .where(is_published: true)
+      .where(is_published: true, is_deleted: false)
       .order(published_at: :desc)
       .all
   end

@@ -12,19 +12,14 @@ RUN gem install bundler
 RUN bundle install --without=test,development
 
 ENV RAILS_ENV production
-ENV WORKER_PROCESSES 4
+ENV WORKER_PROCESSES 3
 
-RUN rm -rf /etc/nginx/sites-available/default
 COPY container/nginx.conf /etc/nginx/sites-available/miniblog.conf
-RUN ln -s /etc/nginx/sites-available/miniblog.conf /etc/nginx/sites-enabled
+RUN rm -rf /etc/nginx/sites-available/default && ln -s /etc/nginx/sites-available/miniblog.conf /etc/nginx/sites-enabled
 
 COPY . .
 
 RUN bundle exec rake assets:precompile
-
-VOLUME ["/opt/miniblog/public"]
-VOLUME ["/opt/miniblog/tmp"]
-VOLUME ["/opt/miniblog/log"]
 
 EXPOSE 80
 
