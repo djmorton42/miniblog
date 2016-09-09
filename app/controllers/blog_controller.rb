@@ -1,8 +1,5 @@
 class BlogController < ApplicationController
   def index
-    @entries = Entry
-      .where(is_published: true, is_deleted: false)
-      .order(:published_at)
-      .all
+    @entries = Entry.published_entires_ordered_by_pub_date
   end
 end

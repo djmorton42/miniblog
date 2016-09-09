@@ -2,10 +2,10 @@ class CategoriesController < ApplicationController
   def show
     unescaped_category_name = CGI.unescape(params[:name]).downcase
 
-    @category = Category.where("lower(name) = ?", unescaped_category_name).first
+    @category = Category.find_for_lower_case_name(unescaped_category_name)
 
     raise ActionController::RoutingError.new('Not Found') unless @category.present?
     
-    @entries = @category.entries.where(is_published: true, is_deleted: false).order(:published_at).all
+    @entries = @category.published_entries_ordered_by_pub_date
   end
 end

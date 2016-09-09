@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   skip_before_action :populate_default_models 
 
   def show
-    image = Image.where(url_token: params[:id], is_published: true, is_deleted: false).first
+    image = Image.find_published_by_token(params[:id]) 
 
     ActionController::RoutingError.new('Not Found') unless image.present?
 
@@ -10,7 +10,7 @@ class ImagesController < ApplicationController
   end
 
   def banner
-    settings = Setting.all.first
+    settings = Setting.get
     banner_image = settings.banner_image
 
     response.headers["Expires"] = 1.hour.from_now.httpdate
@@ -27,6 +27,6 @@ class ImagesController < ApplicationController
   end
 
   def index
-    images = Image.where(is_published: true, is_deleted: false).order(published_date: :desc)
+    images = Image.published_images_ordered_by_pub_date
   end
 end

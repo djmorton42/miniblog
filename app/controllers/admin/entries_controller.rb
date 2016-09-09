@@ -1,9 +1,6 @@
 class Admin::EntriesController < Admin::AdminAreaController
   def index
-    @entries = Entry
-      .where(is_deleted: false)
-      .order(:created_at)
-      .all
+    @entries = Entry.available_entries_ordered_by_created_date
   end
 
   def edit
