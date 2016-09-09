@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     if Rails.env.production?
-      {host: Rails.env.MINIBLOG_HOST, secure: true}
+      {host: ENV["MINIBLOG_HOST"], secure: true}
     else  
       {}
     end
