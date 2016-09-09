@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
   around_action :add_expires_header
   before_action :populate_default_models
 
+  def default_url_options
+    if Rails.env.production?
+      {host: Rails.env.MINIBLOG_HOST, secure: true}
+    else  
+      {}
+    end
+  end
+
   def populate_default_models
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
     @settings = Setting.all.first
