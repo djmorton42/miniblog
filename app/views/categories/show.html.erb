@@ -1,5 +1,5 @@
-<div style="margin-left:20px; width:90%, max-width:1440px;">
-  <div style="width:66%; min-width:500px; float:left;">
+<div id="entry-container">
+  <div id="left-panel">
     <h3>Category: <%= @category.name %></h3>
     <hr />
     <% if @entries.any? %>
@@ -8,7 +8,7 @@
       <p>There are presently no blog posts in this category!</p>
     <% end %>
   </div>
-  <div style="margin-left:20px; width:400px; float:left;">
+  <div id="right-panel">
     <%= render partial: "common/search" %>
     <%= render partial: "common/bio", locals: { markdown: @markdown, settings: @settings } %>
   </div>

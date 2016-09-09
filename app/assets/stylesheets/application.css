@@ -49,9 +49,24 @@ h4 {
   font-family: 'Playfair Display', serif;
 }
 
-.categories ul {
-  list-style-type:none;
-  display:inline;
+div#entry-container {
+  margin-left:20px; 
+  width:90%; 
+  max-width:1440px;
 }
 
+div#left-panel {
+  width:66%; 
+  min-width:500px; 
+  float:left;
+}
 
+div#right-panel {
+  margin-left:20px; 
+  width:400px; 
+  float:left;
+}
+
+div#select-image-modal {
+  height:200px;
+}

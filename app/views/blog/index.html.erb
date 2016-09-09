@@ -1,13 +1,13 @@
 
-<div style="margin-left:20px; width:90%, max-width:1440px;">
-  <div style="width:66%; min-width:500px; float:left;">
+<div id="entry-container">
+  <div id="left-panel">
     <% if @entries.any? %>
       <%= render partial: "common/entry_summary", collection: @entries, locals:  { markdown: @markdown } %>
     <% else %>
       <p>There are presently no blog posts!</p>
     <% end %>
   </div>
-  <div style="margin-left:20px; width:400px; float:left;">
+  <div id="right-panel">
     <%= render partial: "common/search" %>
     <%= render partial: "common/bio", locals: { markdown: @markdown, settings: @settings } %>
   </div>
