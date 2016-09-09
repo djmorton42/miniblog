@@ -15,13 +15,13 @@
     <%= entry_table_row.updated_at %>
   </td>
   <td>
-    <%= link_to(image_tag('ic_create_black_24dp.png'), edit_admin_entry_path(entry_table_row)) %>
-    <%= link_to(image_tag('ic_find_in_page_black_24dp.png'), entry_path(entry_table_row)) %>
+    <%= link_to(image_tag('ic_create_black_24dp.png', title: "Edit Entry"), edit_admin_entry_path(entry_table_row)) %>
+    <%= link_to(image_tag('ic_find_in_page_black_24dp.png', title: "View Entry"), entry_path(entry_table_row)) %>
     <% if entry_table_row.is_published? %>
-      <%= link_to(image_tag('ic_visibility_off_black_24dp.png'), "#{admin_entry_path(entry_table_row)}/unpublish", method: 'post') %>
+      <%= link_to(image_tag('ic_visibility_off_black_24dp.png', title: "Unpublish Entry"), "#{admin_entry_path(entry_table_row)}/unpublish", method: 'post') %>
     <% else %>
-      <%= link_to(image_tag('ic_visibility_black_24dp.png'), "#{admin_entry_path(entry_table_row)}/publish", method: 'post') %>
+      <%= link_to(image_tag('ic_visibility_black_24dp.png', title: "Publish Entry"), "#{admin_entry_path(entry_table_row)}/publish", method: 'post') %>
     <% end %>
-    <%= link_to(image_tag('ic_delete_black_24dp.png'), admin_entry_path(entry_table_row), method: 'delete') %>
+    <%= link_to(image_tag('ic_delete_black_24dp.png', title: "Delete Entry"), admin_entry_path(entry_table_row), method: 'delete') %>
   </td>
 </tr>
