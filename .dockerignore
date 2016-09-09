@@ -7,4 +7,5 @@
 ./public/uploads/*
 ./test
 .byebug_history
+./etc
 Gemfile.lock
