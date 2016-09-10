@@ -22,11 +22,11 @@
 .visible-block { display: visible-block; }
 
 body {
-    font-family: 'Merriweather', serif;
+  font-family: 'Merriweather', serif;
 }
 
 body.blog {
-    background:#ffffff url('http://localhost:3000/images/banner') no-repeat left top;
+  background:#ffffff url('/images/banner') no-repeat left top;
 }
 
 .header {
@@ -38,6 +38,7 @@ body.blog {
                 
 h1 {
   font-family: 'Playfair Display', serif;
+  font-weight: bold;
 }
 h2 {
   font-family: 'Playfair Display', serif;

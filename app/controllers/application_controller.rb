@@ -1,19 +1,9 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   after_action :track_request
   around_action :add_expires_header
   before_action :populate_default_models
-
-  def default_url_options
-    if Rails.env.production?
-      {host: ENV["MINIBLOG_HOST"], secure: true}
-    else  
-      {}
-    end
-  end
 
   def populate_default_models
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
