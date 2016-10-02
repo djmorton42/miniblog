@@ -1,0 +1,6 @@
+<div>
+  <h4>Comment from <em><%= comment_line_item.commenter_name %></em></h4>
+  <p><em>Published at <%= format_datetime(comment_line_item.created_at) %></em></p>
+  <%= markdown.render(comment_line_item.comment).html_safe %>
+  <hr />
+</div>

@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   root 'blog#index'
 
   resources :entries, only: [:show]
- 
-  get 'images/banner' => 'images#banner'
-  
   resources :images, only: [:show]
 
+  post 'entries/:entry_id/comments' => 'entries#add_comment'
+
+  get 'images/banner' => 'images#banner'
   get 'category/:name' => 'categories#show'
 
   ADMIN_PROTOCOL = (Rails.env.production? ? "https" : "http")

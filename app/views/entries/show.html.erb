@@ -5,6 +5,7 @@
       <p><em>Published at <%= format_datetime(@entry.published_at) %> in '<strong><%= @entry.category.name %></strong>'</em></p>
       <hr />
       <%= @markdown.render(@entry.entry).html_safe %>
+      <%= render partial: "comment_list", locals: { markdown: @markdown, settings: @settings, entry: @entry, comment: @comment } %>
     </div>
   </div>
   <div id="right-panel">

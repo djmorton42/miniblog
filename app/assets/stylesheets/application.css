@@ -76,3 +76,7 @@ div#select-image-modal {
 .button {
   background-color: #000000;
 }
+
+div.comment-container {
+  margin-top:40px;
+}

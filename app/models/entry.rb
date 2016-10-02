@@ -1,5 +1,6 @@
 class Entry < ActiveRecord::Base
   belongs_to :category
+  has_many :comments
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :entry, presence: true

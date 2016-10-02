@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905164432) do
+ActiveRecord::Schema.define(version: 20161001205347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(version: 20160905164432) do
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "response_to_comment_id"
+    t.string   "commenter_name",                         null: false
+    t.text     "comment",                                null: false
+    t.boolean  "is_approved",                            null: false
+    t.datetime "approved_at"
+    t.boolean  "is_deleted",             default: false, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "entry_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -84,6 +97,8 @@ ActiveRecord::Schema.define(version: 20160905164432) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "comments", "comments", column: "response_to_comment_id", name: "response_to_comment_fk"
+  add_foreign_key "comments", "entries"
   add_foreign_key "entries", "categories", name: "entry_category_fk"
   add_foreign_key "settings", "images", column: "banner_image_id", name: "settings_banner_image_fk"
 end
