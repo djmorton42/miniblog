@@ -26,5 +26,10 @@ Rails.application.routes.draw do
     post 'images/banner' => 'images#set_banner', protocol: ADMIN_PROTOCOL
     post 'images/:id/publish' => 'images#publish', protocol: ADMIN_PROTOCOL
     post 'images/:id/unpublish' => 'images#unpublish', protocol: ADMIN_PROTOCOL
+
+    delete 'comments/:id' => 'comments#delete', protocol: ADMIN_PROTOCOL
+    put 'comments/:id/approve' => 'comments#approve', protocol: ADMIN_PROTOCOL
+    put 'comments/:id/unapprove' => 'comments#unapprove', protocol: ADMIN_PROTOCOL
+
   end
 end

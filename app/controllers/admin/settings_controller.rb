@@ -25,7 +25,8 @@ class Admin::SettingsController < Admin::AdminAreaController
       .permit(
         :blog_title, 
         :blog_subtitle, 
-        :title_color, 
+        :title_color,
+        :require_comment_approval,
         :display_bio, 
         :bio, 
         :banner_image_id, 

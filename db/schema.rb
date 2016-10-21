@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001205347) do
+ActiveRecord::Schema.define(version: 20161020191743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,17 +36,18 @@ ActiveRecord::Schema.define(version: 20161001205347) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.string   "title",                        null: false
-    t.text     "entry",                        null: false
-    t.text     "summary",                      null: false
-    t.boolean  "is_published", default: false, null: false
+    t.string   "title",                          null: false
+    t.text     "entry",                          null: false
+    t.text     "summary",                        null: false
+    t.boolean  "is_published",   default: false, null: false
     t.datetime "published_at"
-    t.boolean  "is_deleted",   default: false, null: false
+    t.boolean  "is_deleted",     default: false, null: false
     t.datetime "deleted_at"
-    t.text     "tags",                         null: false
+    t.text     "tags",                           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_id",                  null: false
+    t.integer  "category_id",                    null: false
+    t.boolean  "allow_comments", default: true,  null: false
   end
 
   add_index "entries", ["category_id"], name: "index_entries_on_category_id", using: :btree
@@ -65,15 +66,16 @@ ActiveRecord::Schema.define(version: 20161001205347) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string   "blog_title",      null: false
-    t.string   "blog_subtitle",   null: false
-    t.boolean  "display_bio",     null: false
-    t.text     "bio",             null: false
+    t.string   "blog_title",                               null: false
+    t.string   "blog_subtitle",                            null: false
+    t.boolean  "display_bio",                              null: false
+    t.text     "bio",                                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "banner_image_id"
     t.string   "title_color"
     t.text     "copyright"
+    t.boolean  "require_comment_approval", default: false, null: false
   end
 
   create_table "trackers", force: :cascade do |t|

@@ -1,9 +1,20 @@
 <div class="comment-container">
   <hr />
-  <% if entry.comments.any? %>
-    <h4><em>Comments</em> (<a href="#add-comment-form">Add Comment</a>)</h4>
-    <%= render partial: "comment_line_item", collection: entry.comments, locals: { markdown: markdown, settings: settings } %>
-  <% end %>
+  <%
+    comments_to_display = @current_user.present? ? entry.all_comments : entry.approved_comments
+  %>
+  <% if comments_to_display.any? %>
+    <h4><em>Comments</em> 
+    <% if entry.allow_comments %>
+      (<a href="#add-comment-form">Add Comment</a>)
+     <% end %>   
+    </h4>
 
-  <%= render partial: "comment_form", locals: { settings: settings, comment: comment } %>
+    <%= render partial: "comment_line_item", collection: comments_to_display, locals: { markdown: markdown, settings: settings } 
+    %>
+  <% end %>
+  
+  <% if entry.allow_comments %>
+    <%= render partial: "comment_form", locals: { settings: settings, comment: comment } %>
+  <% end %>
 </div>

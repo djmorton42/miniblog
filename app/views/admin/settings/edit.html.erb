@@ -49,6 +49,14 @@
     </div>
     <div class="row">                                                   
       <div class="medium-6 columns">                          
+        <div class="<%= @settings.errors[:require_comment_approval].any? ? "error" : "" %>">
+          <%= f.label(:require_comment_approval, "Require Comment Approval:") %>                  
+          <%= f.check_box(:require_comment_approval) %>                            
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
+      <div class="medium-6 columns">                          
         <div class="<%= @settings.errors[:display_bio].any? ? "error" : "" %>">
           <%= f.label(:display_bio, "Display Bio:") %>                  
           <%= f.check_box(:display_bio) %>                            

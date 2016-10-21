@@ -80,3 +80,21 @@ div#select-image-modal {
 div.comment-container {
   margin-top:40px;
 }
+
+div.comment-item p {
+  font-size: 90%;
+}
+
+div.comment-controls {
+  border: 1px black solid;
+  padding: 10px;
+  background-color: #FFFFC8
+}
+
+.approved {
+  color: #22BB22;
+}
+
+.unapproved {
+  color: #BB2222;
+}

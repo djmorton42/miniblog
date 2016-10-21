@@ -1,5 +1,17 @@
-<div>
-  <h4>Comment from <em><%= comment_line_item.commenter_name %></em></h4>
+<div class="comment-item">
+  <% if @current_user.present? %>
+    <div class="comment-controls">
+      <% comment_state = comment_line_item.is_approved ? "Approved" : "Unapproved" %>
+      <p>This comment is <span class="<%= comment_state.downcase %>"><%= comment_state %></span></p>
+      <% if comment_line_item.is_approved %>
+        <%= link_to(image_tag('ic_not_interested_black_24dp.png', title: "Unapprove Comment"), "/admin/comments/#{comment_line_item.id}/unapprove", method: 'PUT') %>
+      <% else %>
+        <%= link_to(image_tag('ic_offline_pin_black_24dp.png', title: "Approve Comment"), "/admin/comments/#{comment_line_item.id}/approve", method: 'PUT') %>
+      <% end %>
+      <%= link_to(image_tag('ic_delete_black_24dp.png', title: "Delete Comment"), "/admin/comments/#{comment_line_item.id}", method: 'DELETE') %>
+    </div>
+  <% end %>
+  <h4><em><%= comment_line_item.commenter_name %></em> writes:</h4>
   <p><em>Published at <%= format_datetime(comment_line_item.created_at) %></em></p>
   <%= markdown.render(comment_line_item.comment).html_safe %>
   <hr />

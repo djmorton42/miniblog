@@ -69,6 +69,6 @@ class Admin::EntriesController < Admin::AdminAreaController
   def entry_params
     params
       .require(:entry)
-      .permit(:title, :tags, :entry, :summary, :category_id)
+      .permit(:title, :tags, :entry, :summary, :category_id, :allow_comments)
   end
 end

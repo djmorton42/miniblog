@@ -17,5 +17,16 @@ class Entry < ActiveRecord::Base
       .where(is_deleted: false)
       .order(:created_at)
   end
-    
+
+  def approved_comments
+    comments
+      .where(is_deleted: false, is_approved: true)
+      .order(:created_at)
+  end
+
+  def all_comments
+    comments
+      .where(is_deleted: false)
+      .order(:created_at)
+  end
 end

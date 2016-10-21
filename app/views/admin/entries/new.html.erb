@@ -40,6 +40,17 @@
       </div>
     </div>
     <div class="row">                                                   
+      <div class="medium-6 columns">                          
+        <div class="<%= @entry.errors[:allow_comments].any? ? "error" : "" %>">
+          <%= f.label(:allow_comments, "Allow Comments:") %>                  
+          <%= f.check_box(:allow_comments) %>                            
+          <% if @entry.errors[:allow_comments].any? %>                   
+            <small class="error"><%= @entry.errors[:allow_comments].join(', ') %></small>
+          <% end %>                                                   
+        </div>              
+      </div>
+    </div>
+    <div class="row">                                                   
       <%= link_to(image_tag('ic_insert_photo_black_24dp.png'), '#', "data-reveal-id": 'select-image-modal', id: 'select-image-link') %>
       <div class="medium-12 columns">                          
         <div class="<%= @entry.errors[:entry].any? ? "error" : "" %>">

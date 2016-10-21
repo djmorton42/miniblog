@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   after_action :track_request
   around_action :add_expires_header
   before_action :populate_default_models
+  before_action :set_user_instance_from_session
+                                                                                 
+  def set_user_instance_from_session                                          
+    current_user_id = session[:current_user_id]                             
+    @current_user = current_user_id.nil? ? nil : User.find(current_user_id) 
+  end                                                                         
 
   def populate_default_models
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})

@@ -10,8 +10,12 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:entry_id])
     can_view_entry(@entry)
 
+    unless @entry.allow_comments 
+      render(text: "Adding comments is disallowed for this blog post.", status: :forbidden) and return
+    end
+
     @comment = Comment.new(comment_params)
-    @comment.is_approved = true
+    @comment.is_approved = !Setting.get.require_comment_approval
     @comment.entry = @entry
     @comment.save
 
