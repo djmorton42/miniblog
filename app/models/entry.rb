@@ -12,6 +12,12 @@ class Entry < ActiveRecord::Base
       .order(:published_at)
   end
 
+  def self.published_entries_ordered_by_update_date
+    Entry
+      .where(is_published: true, is_deleted: false)
+      .order(:updated_at)
+  end
+
   def self.available_entries_ordered_by_created_date
     Entry
       .where(is_deleted: false)

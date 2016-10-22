@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :entries, only: [:show]
   resources :images, only: [:show]
-
+  resource :sitemap, only: [:show], defaults: { format: 'json' }
 
   ADMIN_PROTOCOL = (Rails.env.production? ? "https" : "http")
 
