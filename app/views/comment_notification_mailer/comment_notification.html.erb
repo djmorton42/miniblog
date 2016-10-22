@@ -1,0 +1,30 @@
+<p>
+  The blog post entitled "<em><%= @entry.title %></em>" has received a new comment.
+</p>
+
+<p>
+  <strong>Commenter name:</strong> <%= @comment.commenter_name %>
+</p>
+
+<h3>Comment:</h3>
+
+<hr />
+
+<p>
+  <%= @comment.comment %>
+</p>
+<hr />
+
+<p>
+  <strong>
+    <% if @comment.is_approved %>
+      This comment has been auto-approved.
+    <% else %>
+      This comment must be approved before it will be visible.
+    <% end %>
+  </strong>
+</p>
+
+<p>
+  You may login to the blog and change the approval status of comments.
+</p>

@@ -22,6 +22,7 @@ class EntriesController < ApplicationController
     if @comment.errors.any?
       render :show
     else
+      CommentNotificationMailer.comment_notification(@comment, @entry).deliver_later
       redirect_to entry_url(@entry)
     end
   end

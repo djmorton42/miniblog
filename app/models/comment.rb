@@ -5,14 +5,6 @@ class Comment < ActiveRecord::Base
   validates :commenter_name, presence: true, length: { maximum: 100 }
   validates :comment, presence: true, length: { maximum: 4096 }
 
-  def commenter_name=(value)
-    write_attribute(:commenter_name, ActionController::Base.helpers.sanitize(value))
-  end
-
-  def comment=(value)
-    write_attribute(:comment, ActionController::Base.helpers.sanitize(value))
-  end
-
   def self.approved
     Comment
       .where(is_deleted: false, is_approved: true)
