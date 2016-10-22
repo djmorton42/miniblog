@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   root 'blog#index'
+  
+  post 'entries/:entry_id/comments' => 'entries#add_comment'
+
+  #Must come before resources :images below
+  get 'images/banner' => 'images#banner'
+  get 'category/:name' => 'categories#show'
 
   resources :entries, only: [:show]
   resources :images, only: [:show]
 
-  post 'entries/:entry_id/comments' => 'entries#add_comment'
-
-  get 'images/banner' => 'images#banner'
-  get 'category/:name' => 'categories#show'
 
   ADMIN_PROTOCOL = (Rails.env.production? ? "https" : "http")
 
