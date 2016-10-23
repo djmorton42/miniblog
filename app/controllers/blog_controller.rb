@@ -11,6 +11,5 @@ class BlogController < ApplicationController
       @last_build_date = entry.published_at if @last_build_date.nil? || entry.published_at > @last_build_date
       @last_build_date = entry.updated_at if @last_build_date.nil? || entry.updated_at > @last_build_date
     end
-    puts "Last Build Date: #{@last_build_date} - #{@last_build_date.strftime('%+')}"
   end
 end
