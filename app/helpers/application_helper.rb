@@ -7,6 +7,10 @@ module ApplicationHelper
   end
 
   def format_sitemap_datetime(datetime)
-    datetime.in_time_zone(TIMEZONE).strftime('%Y-%m-%d')
+    datetime.in_time_zone(TIMEZONE).strftime('%F')
+  end
+
+  def format_rss_datetime(datetime)
+    datetime.in_time_zone(TIMEZONE).strftime('%a, %d %b %Y %k:%M:%S %Z')
   end
 end

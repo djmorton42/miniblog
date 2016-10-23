@@ -1,0 +1,8 @@
+    <item>
+      <title><%= feed_item.title %></title>
+      <link><%= entry_url(feed_item) %></link>
+      <description><%= markdown.render(feed_item.summary).html_safe %></description>
+      <pubDate><%= format_rss_datetime(feed_item.published_at) %></pubDate>
+      <guid isPermaLink="true"><%= entry_url(feed_item) %></guid>
+      <category><%= feed_item.category.name %></category>
+    </item>

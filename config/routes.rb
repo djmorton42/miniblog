@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #Must come before resources :images below
   get 'images/banner' => 'images#banner'
   get 'category/:name' => 'categories#show'
+  get 'feed' => 'blog#feed', only: [:show], defaults: { format: 'rss' }
 
   resources :entries, only: [:show]
   resources :images, only: [:show]

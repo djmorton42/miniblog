@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title><%= @settings.blog_title %></title>
+    <link><%= root_url %></link>
+    <description><%= @settings.blog_subtitle %></description>
+    <copyright><%= @markdown.render(@settings.copyright).html_safe %></copyright>
+    <lastBuildDate><%= format_rss_datetime(@last_build_date) %></lastBuildDate>
+<%= render partial: 'feed_item', collection: @entries, locals: { markdown: @markdown } %>
+  </channel>
+</rss>
