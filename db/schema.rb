@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020191743) do
+ActiveRecord::Schema.define(version: 20161025175639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,20 @@ ActiveRecord::Schema.define(version: 20161020191743) do
   end
 
   add_index "entries", ["category_id"], name: "index_entries_on_category_id", using: :btree
+
+  create_table "historical_entries", force: :cascade do |t|
+    t.string   "title",           null: false
+    t.text     "entry",           null: false
+    t.text     "summary",         null: false
+    t.text     "tags",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "category_id",     null: false
+    t.integer  "parent_entry_id", null: false
+  end
+
+  add_index "historical_entries", ["category_id"], name: "index_historical_entries_on_category_id", using: :btree
+  add_index "historical_entries", ["parent_entry_id"], name: "index_historical_entries_on_parent_entry_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "title",                        null: false
@@ -102,5 +116,7 @@ ActiveRecord::Schema.define(version: 20161020191743) do
   add_foreign_key "comments", "comments", column: "response_to_comment_id", name: "response_to_comment_fk"
   add_foreign_key "comments", "entries"
   add_foreign_key "entries", "categories", name: "entry_category_fk"
+  add_foreign_key "historical_entries", "categories", name: "historical_entry_category_fk"
+  add_foreign_key "historical_entries", "entries", column: "parent_entry_id", name: "historical_entry_entry_fk"
   add_foreign_key "settings", "images", column: "banner_image_id", name: "settings_banner_image_fk"
 end

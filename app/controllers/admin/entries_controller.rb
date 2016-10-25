@@ -11,12 +11,16 @@ class Admin::EntriesController < Admin::AdminAreaController
 
   def update
     @entry = Entry.find(params[:id])
+
+    historical_entry = HistoricalEntry.from_entry(@entry)
+
     @entry.update_attributes(entry_params)
 
     if @entry.errors.any?
       @categories = Category.all
       render :new 
     else
+      historical_entry.save
       redirect_to admin_entries_path
     end
   end
