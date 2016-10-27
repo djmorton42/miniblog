@@ -1,0 +1,18 @@
+<div class="row">
+  <h2>Historical Entries for '<em><%= @entry.title %>'</em></h2>
+  <h3>Revision Date: <em><%= format_datetime(@historical_entry.created_at) %></em></h3>
+</div>
+<div class="row">
+    <div>
+      <p><strong>Revision Title:</strong> <%= @historical_entry.title %></p>
+      <p><strong>Category:</strong> <%= @historical_entry.category.name %></p>
+      <hr />
+      <%= @markdown.render(@historical_entry.entry).html_safe %>
+    </div>
+</div>
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <%= link_to('Restore Revision', "/admin/entries/#{@entry.id}/history/#{@historical_entry.id}/restore", method: 'POST', class: 'button round success') %>
+    <%= link_to('Back', admin_entry_history_index_path(@entry), class: 'button round') %>
+  </div>
+</div>

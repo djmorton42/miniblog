@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     root to: 'admin#index', protocol: ADMIN_PROTOCOL
     resource :authentications, only: [:create, :new, :destroy], protocol: ADMIN_PROTOCOL
     resource :settings, only: [:show, :update], protocol: ADMIN_PROTOCOL
-    resources :entries, only: [:create, :new, :edit, :update, :show, :destroy, :index], protocol: ADMIN_PROTOCOL
+    resources :entries, only: [:create, :new, :edit, :update, :show, :destroy, :index], protocol: ADMIN_PROTOCOL do
+      resources :history, only: [:index, :show], protocol: ADMIN_PROTOCOL
+      
+      post 'history/:id/restore' => 'history#restore', protocol: ADMIN_PROTOCOL
+    end
     resources :categories, only: [:create, :new, :edit, :update, :show, :index], protocol: ADMIN_PROTOCOL
     resources :images, only: [:create, :new, :show, :destroy, :index], protocol: ADMIN_PROTOCOL
     resources :users, only: [:create, :new, :edit, :update, :show, :index], protocol: ADMIN_PROTOCOL

@@ -1,0 +1,8 @@
+<tr>
+  <td><%= historical_entry_line_item.title %></td>
+  <td><%= format_datetime(historical_entry_line_item.created_at) %></td>
+  <td>
+    <%= link_to(image_tag('ic_find_in_page_black_24dp.png', title: "View Historical Entry"), admin_entry_history_path(entry, historical_entry_line_item)) %>
+    <%= link_to(image_tag('ic_restore_black_24dp.png', title: "Restore this Revision"), "/admin/entries/#{entry.id}/history/#{historical_entry_line_item.id}/restore", method: 'post') %>
+  </td>
+</tr>

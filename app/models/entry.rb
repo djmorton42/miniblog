@@ -1,6 +1,7 @@
 class Entry < ActiveRecord::Base
   belongs_to :category
   has_many :comments
+  has_many :historical_entries, class_name: 'HistoricalEntry', foreign_key: 'parent_entry_id'
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :entry, presence: true

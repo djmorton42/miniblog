@@ -22,6 +22,11 @@
     <% else %>
       <%= link_to(image_tag('ic_visibility_black_24dp.png', title: "Publish Entry"), "#{admin_entry_path(entry_table_row)}/publish", method: 'post') %>
     <% end %>
+
+    <% if entry_table_row.historical_entries.any? %>
+      <%= link_to(image_tag('ic_youtube_searched_for_black_24dp.png', title: 'Revision History'), admin_entry_history_index_path(entry_table_row)) %>
+    <% end %>
+
     <%= link_to(image_tag('ic_delete_black_24dp.png', title: "Delete Entry"), admin_entry_path(entry_table_row), method: 'delete') %>
   </td>
 </tr>

@@ -9,6 +9,7 @@ class HistoricalEntry < ActiveRecord::Base
       summary: entry.summary,
       tags: entry.tags,
       category: entry.category,
+      created_at: entry.updated_at,
       parent_entry: entry
     )
   end
