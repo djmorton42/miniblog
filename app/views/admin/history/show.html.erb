@@ -12,7 +12,14 @@
 </div>
 <div class="row">
   <div class="small-6 small-centered columns">
-    <%= link_to('Restore Revision', "/admin/entries/#{@entry.id}/history/#{@historical_entry.id}/restore", method: 'POST', class: 'button round success') %>
+    <%= link_to(
+          'Restore Revision',
+          "/admin/entries/#{@entry.id}/history/#{@historical_entry.id}/restore",
+          method: 'POST',
+          class: 'button round success',
+          data: { confirm: 'Are you sure you want to restore this revision?' }
+        ) 
+    %>
     <%= link_to('Back', admin_entry_history_index_path(@entry), class: 'button round') %>
   </div>
 </div>

@@ -10,10 +10,19 @@
   </td>
   <td>
     <% if image_table_row.is_published? %>
-      <%= link_to(image_tag('ic_visibility_off_black_24dp.png', title: "Unpublish Image"), "#{admin_image_path(image_table_row)}/unpublish", method: 'post') %>
+      <%= link_to(
+            image_tag('ic_visibility_off_black_24dp.png', title: "Unpublish Image"), 
+            "#{admin_image_path(image_table_row)}/unpublish", 
+            method: 'post',
+            data: { confirm: 'Are you sure you want to unpublish this image?' } 
+            ) %>
     <% else %>
       <%= link_to(image_tag('ic_visibility_black_24dp.png', title: "Publish Image"), "#{admin_image_path(image_table_row)}/publish", method: 'post') %>
     <% end %>
-    <%= link_to(image_tag('ic_delete_black_24dp.png', title: "Delete Image"), admin_image_path(image_table_row), method: 'delete') %>
+    <%= link_to(
+          image_tag('ic_delete_black_24dp.png', title: "Delete Image"),
+          admin_image_path(image_table_row),
+          method: 'delete',
+          data: { confirm: 'Are you sure you want to delete this image?' }) %>
   </td>
 </tr>
