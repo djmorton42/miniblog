@@ -8,11 +8,7 @@
       <%= render partial: "comment_list", locals: { markdown: @markdown, settings: @settings, entry: @entry, comment: @comment } %>
     </div>
   </div>
-  <div id="right-panel">a
-    <div class="row">
-      <%= link_to(image_tag("ic_rss_feed_black_24dp.png", title: "Subscribe with RSS"), "#{feed_url}.rss") %>
-    </div>
-    <hr />
-    <%= render partial: "common/search" %>
-    <%= render partial: "common/bio", locals: { markdown: @markdown, settings: @settings } %> </div>
+  <div id="right-panel">
+    <%= render partial: "common/right_panel", locals: { markdown: @unsafe_markdown, settings: @settings } %>
+  </div>
 </div>

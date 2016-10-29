@@ -1,4 +1,3 @@
-
 <div id="entry-container">
   <div id="left-panel">
     <% if @entries.any? %>
@@ -8,11 +7,6 @@
     <% end %>
   </div>
   <div id="right-panel">
-    <div class="row">
-      <%= link_to(image_tag("ic_rss_feed_black_24dp.png", title: "Subscribe with RSS"), "#{feed_url}.rss") %>
-    </div>
-    <hr />
-    <%= render partial: "common/search" %>
-    <%= render partial: "common/bio", locals: { markdown: @markdown, settings: @settings } %>
+    <%= render partial: "common/right_panel", locals: { markdown: @unsafe_markdown, settings: @settings } %>
   </div>
 </div>
