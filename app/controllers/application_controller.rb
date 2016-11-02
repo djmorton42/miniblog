@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   after_action :track_request
   around_action :add_expires_header
+  around_action :setup_visitor_cookie
   before_action :populate_default_models
   before_action :set_user_instance_from_session
                                                                                  
@@ -30,8 +31,18 @@ class ApplicationController < ActionController::Base
         url: request.url,
         referer: request.referer,
         accept_language: request.accept_language,
-        x_forwarded_for:  request.headers['x-forwarded-for']
+        x_forwarded_for:  request.headers['x-forwarded-for'],
+        visitor_id: session[:visitor_id]
     )
+  end
+
+  def setup_visitor_cookie
+    visitor_id = cookies[:visitor_id] || SecureRandom.uuid
+    session[:visitor_id] = visitor_id
+    
+    yield
+    
+    response.set_cookie(:visitor_id, visitor_id)
   end
 
   def add_expires_header

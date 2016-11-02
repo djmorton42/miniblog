@@ -1,4 +1,6 @@
 class BlogController < ApplicationController
+  skip_after_action :track_request, only: [:feed]
+
   def index
     @entries = Entry.published_entries_ordered_by_pub_date
   end

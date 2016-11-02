@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :new, :show, :destroy, :index], protocol: ADMIN_PROTOCOL
     resources :users, only: [:create, :new, :edit, :update, :show, :index], protocol: ADMIN_PROTOCOL
     resources :test_email, only: [:create], protocol: ADMIN_PROTOCOL
+    resources :tracker, only: [:index], protocol: ADMIN_PROTOCOL
 
     post 'entries/:id/publish' => 'entries#publish', protocol: ADMIN_PROTOCOL
     post 'entries/:id/unpublish' => 'entries#unpublish', protocol: ADMIN_PROTOCOL

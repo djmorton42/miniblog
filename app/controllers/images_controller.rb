@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   skip_before_action :populate_default_models 
+  skip_after_action :track_request
 
   def show
     image = Image.find_published_by_token(params[:id]) 
@@ -21,12 +22,14 @@ class ImagesController < ApplicationController
     end
   end
 
+  def index
+    images = Image.published_images_ordered_by_pub_date
+  end
+ 
+  private
+
   def send_image(token, content_type)
     file_name_on_disk = Rails.root.join('public', 'uploads', token)
     send_data(open(file_name_on_disk, "rb") { |f| f.read }, type: content_type, disposition: 'inline')
-  end
-
-  def index
-    images = Image.published_images_ordered_by_pub_date
   end
 end
