@@ -33,7 +33,8 @@ class ApplicationController < ActionController::Base
         accept_language: request.accept_language,
         x_forwarded_for:  request.headers['x-forwarded-for'],
         visitor_id: session[:visitor_id]
-    )
+    ) unless session[:current_user_id].present?
+
   end
 
   def setup_visitor_cookie

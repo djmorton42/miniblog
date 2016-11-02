@@ -1,0 +1,15 @@
+<div class="row">
+  <h2>URL Tracking</h2>
+</div>
+<div class="row">
+  <table>
+    <tr>
+      <th>URL</th><th>Count</th>
+    </tr>
+    <% @url_count_map.each do |url,count| %>
+      <tr>
+        <th><%= url %></th><th><%= count %></th>
+      </tr>
+    <% end %>
+  </table>
+</div>
