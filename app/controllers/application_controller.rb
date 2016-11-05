@@ -13,10 +13,10 @@ class ApplicationController < ActionController::Base
   end                                                                         
 
   def populate_default_models
-    safe_renderer = Redcarpet::Render::HTML.new(escape_html: true)
+    safe_renderer = Redcarpet::Render::HTML.new(escape_html: true, hard_wrap: true)
     @markdown = Redcarpet::Markdown.new(safe_renderer, extensions = {})
 
-    unsafe_renderer = Redcarpet::Render::HTML.new()
+    unsafe_renderer = Redcarpet::Render::HTML.new(hard_wrap: true)
     @unsafe_markdown = Redcarpet::Markdown.new(unsafe_renderer, extensions = {})
 
     @settings = Setting.all.first
