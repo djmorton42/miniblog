@@ -2,7 +2,7 @@ class BlogController < ApplicationController
   skip_after_action :track_request, only: [:feed]
 
   def index
-    @entries = Entry.published_entries_ordered_by_pub_date
+    @entries = Entry.published_entries_ordered_by_pub_date_desc
   end
 
   def feed

@@ -22,5 +22,11 @@ class Category < ActiveRecord::Base
       .where(is_published: true, is_deleted: false)
       .order(:published_at)
   end
-
+  
+  def published_entries_ordered_by_pub_date_desc
+    self
+      .entries
+      .where(is_published: true, is_deleted: false)
+      .order(published_at: :desc)
+  end
 end

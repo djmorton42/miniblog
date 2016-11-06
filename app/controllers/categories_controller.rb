@@ -6,6 +6,6 @@ class CategoriesController < ApplicationController
 
     raise ActionController::RoutingError.new('Not Found') unless @category.present?
     
-    @entries = @category.published_entries_ordered_by_pub_date
+    @entries = @category.published_entries_ordered_by_pub_date_desc
   end
 end

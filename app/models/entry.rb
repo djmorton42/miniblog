@@ -7,6 +7,12 @@ class Entry < ActiveRecord::Base
   validates :entry, presence: true
   validates :summary, presence: true
 
+  def self.published_entries_ordered_by_pub_date_desc
+    Entry
+      .where(is_published: true, is_deleted: false)
+      .order(published_at: :desc)
+  end
+
   def self.published_entries_ordered_by_pub_date
     Entry
       .where(is_published: true, is_deleted: false)
