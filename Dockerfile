@@ -21,6 +21,6 @@ COPY . .
 
 RUN bundle exec rake assets:precompile
 
-EXPOSE 80
+EXPOSE 8081
 
 CMD ["foreman", "start"]
