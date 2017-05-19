@@ -15,6 +15,21 @@
   </head>
 
   <body class="blog">
+    <% if flash[:notice] %>
+      <div id="flash-bar" class="alert-box success">
+        <%= flash[:notice] %>
+      </div>
+      <script>
+        fadeoutFlashDiv();
+      </script>
+    <% elsif flash[:alert] %>
+      <div id="flash-bar" class="alert-box warning">
+        <%= flash[:alert] %>
+      </div>
+      <script>
+        fadeoutFlashDiv();
+      </script>
+    <% end %>
 
     <div class="header">
       <h1 style="color: <%= @settings.title_color %>;"><%= @settings.blog_title %></h1>

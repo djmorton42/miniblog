@@ -18,7 +18,7 @@ class Admin::EntriesController < Admin::AdminAreaController
 
     if @entry.errors.any?
       @categories = Category.all
-      render :new 
+      render :new
     else
       historical_entry.save
       redirect_to admin_entries_path
@@ -40,6 +40,8 @@ class Admin::EntriesController < Admin::AdminAreaController
     @entry.published_at = DateTime.now
     @entry.save
 
+    send_subscription_notifications(@entry)
+
     redirect_to admin_entries_path
   end
 
@@ -58,7 +60,7 @@ class Admin::EntriesController < Admin::AdminAreaController
   end
 
   def create
-    @entry = Entry.create(entry_params)   
+    @entry = Entry.create(entry_params)
 
     if @entry.errors.any?
       @categories = Category.all
@@ -70,6 +72,22 @@ class Admin::EntriesController < Admin::AdminAreaController
   end
 
   private
+
+  def send_subscription_notifications(entry)
+    subscriptions = Subscription
+      .where(confirmed: true)
+      .pluck(:email, :unsubscribe_token)
+      .to_h
+
+    subscriptions.each do |email, unsubscribe_token|
+      SubscriptionNotificationMailer
+        .send_publish_notification(
+          { email: email, unsubscribe_token: unsubscribe_token },
+          entry
+        ).deliver_now
+    end
+  end
+
   def entry_params
     params
       .require(:entry)

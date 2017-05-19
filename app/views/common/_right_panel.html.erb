@@ -1,5 +1,29 @@
     <div class="row">
-      <%= link_to(image_tag("ic_rss_feed_black_24dp.png", title: "Subscribe with RSS"), "#{feed_url}.rss") %>
+      <%= form_for @subscription do |f| %>
+        <div class="row <%= @subscription.errors[:email].any? ? "error" : "" %> ">
+          <div class="large-12 columns">
+            <div class="row collapse">
+              <div class="small-2 columns">
+                <%= f.label(:email, "Email:", class: 'prefix') %>
+              </div>
+              <div class="small-5 columns">
+                <%= f.text_field(:email) %>
+              </div>
+              <div class="small-3 columns">
+                <%= f.submit('Subscribe', class: "button postfix") %>
+              </div>
+              <div class="small-2 columns">
+                <%= link_to(image_tag("ic_rss_feed_black_24dp.png", title: "Subscribe with RSS"), "#{feed_url}.rss", class: 'right') %>
+              </div>
+            </div>
+            <div class="small-10 colums">
+              <% if @subscription.errors[:email].any? %>
+                <small class="error"><%= @subscription.errors[:email].join(', ') %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
     <hr />
     <%= render partial: "common/search" %>

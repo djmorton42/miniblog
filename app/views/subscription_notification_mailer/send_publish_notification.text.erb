@@ -1,0 +1,17 @@
+A new entry has been published on '<%= @settings.blog_title %>'.
+
+**********
+
+<%= @entry.title %>
+Published at <%= format_datetime(@entry.published_at) %> in '<%= @entry.category.name %>'
+
+**********
+
+<%= @entry.summary %>
+
+<%= link_to("Read full post", entry_url(@entry)) %>
+
+**********
+
+You are receiving this email because you subscribed to '<%= @settings.blog_title %>'.
+If you wish to unsubscribe, please <%= link_to('click here', unsubscribe_subscription_url(@unsubscribe_token)) %>.

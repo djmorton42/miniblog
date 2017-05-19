@@ -35,7 +35,7 @@ body.blog {
   margin-top:2em;
   margin-left:2em;
 }
-                
+
 h1 {
   font-family: 'Playfair Display', serif;
   font-weight: bold;
@@ -52,20 +52,20 @@ h4 {
 }
 
 div#entry-container {
-  margin-left:20px; 
-  width:90%; 
+  margin-left:20px;
+  width:90%;
   max-width:1440px;
 }
 
 div#left-panel {
-  width:60%; 
-  min-width:400px; 
+  width:60%;
+  min-width:400px;
   float:left;
 }
 
 div#right-panel {
-  margin-left:20px; 
-  width:400px; 
+  margin-left:20px;
+  width:400px;
   float:left;
 }
 
@@ -97,4 +97,11 @@ div.comment-controls {
 
 .unapproved {
   color: #BB2222;
+}
+
+#flash-bar {
+  width:100%;
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
 }
