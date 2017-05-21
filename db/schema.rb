@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518221452) do
+ActiveRecord::Schema.define(version: 20170521170038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,11 @@ ActiveRecord::Schema.define(version: 20170518221452) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "subscriptions", ["confirm_token"], name: "index_subscriptions_on_confirm_token", unique: true, using: :btree
+  add_index "subscriptions", ["confirmed"], name: "index_subscriptions_on_confirmed", using: :btree
+  add_index "subscriptions", ["email"], name: "index_subscriptions_on_email", using: :btree
+  add_index "subscriptions", ["unsubscribe_token"], name: "index_subscriptions_on_unsubscribe_token", unique: true, using: :btree
 
   create_table "trackers", force: :cascade do |t|
     t.integer  "status_code",     null: false
