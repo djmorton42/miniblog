@@ -1,0 +1,16 @@
+<div>
+  <h2>A new entry has been published on <em><%= @settings.blog_title %></em>.</h2>
+  <hr />
+
+  <h3><%= @entry.title %></h3>
+  <p><em>Published at <%= format_datetime(@entry.published_at) %> in '<strong><%= @entry.category.name %></strong>'</em></p>
+  <hr />
+  <%= @markdown.render(@entry.summary).html_safe %>
+  <br />
+  <%= link_to("Read full post", entry_url(@entry)) %>
+  <hr />
+  <p>
+     You are receiving this email because you subscribed to <em><%= @settings.blog_title %></em>.
+     If you wish to unsubscribe, please <%= link_to('click here', unsubscribe_subscription_url(@unsubscribe_token)) %>.
+  </p>
+</div>

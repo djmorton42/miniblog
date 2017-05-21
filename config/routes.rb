@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'blog#index'
-  
+
   post 'entries/:entry_id/comments' => 'entries#add_comment'
 
   #Must come before resources :images below
@@ -8,6 +8,16 @@ Rails.application.routes.draw do
   get 'category/:name' => 'categories#show'
   get 'feed' => 'blog#feed', only: [:show], defaults: { format: 'rss' }
 
+  resources :subscriptions, only: [:create] do
+    member do
+      get :confirm_email
+      get :not_found
+      get :success
+      get :unsubscribe
+      get :unsubscribe_success
+      get :unsubscribe_failure
+    end
+  end
   resources :entries, only: [:show]
   resources :images, only: [:show]
   resource :sitemap, only: [:show], defaults: { format: 'json' }
@@ -20,7 +30,7 @@ Rails.application.routes.draw do
     resource :settings, only: [:show, :update], protocol: ADMIN_PROTOCOL
     resources :entries, only: [:create, :new, :edit, :update, :show, :destroy, :index], protocol: ADMIN_PROTOCOL do
       resources :history, only: [:index, :show], protocol: ADMIN_PROTOCOL
-      
+
       post 'history/:id/restore' => 'history#restore', protocol: ADMIN_PROTOCOL
     end
     resources :categories, only: [:create, :new, :edit, :update, :show, :index], protocol: ADMIN_PROTOCOL

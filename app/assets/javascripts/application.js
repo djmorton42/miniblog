@@ -17,9 +17,14 @@
 //= require simplemde
 //= require jqColorPicker.min
 
-var ready;                                                                      
-ready = function() {                                                            
-  $(document).foundation();                                                     
-};                                                                              
-$(document).ready(ready);                                                       
+var ready;
+ready = function() {
+  $(document).foundation();
+};
+
+function fadeoutFlashDiv() {
+  $('#flash-bar').delay(5000).fadeOut();
+}
+
+$(document).ready(ready);
 $(document).on('turbolinks:load', ready);

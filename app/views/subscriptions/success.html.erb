@@ -1,0 +1,14 @@
+<div id="entry-container">
+  <div id="left-panel">
+    <h2>Subscription Successful</h2>
+
+    <p>Thank you for subscribing to <em><%= @settings.blog_title %></em>!</p>
+
+    <p>You will recieve a notification when a new blog post is published.</p>
+
+    <p>If you wish to unsubscribe at any time, click the 'Unsubscribe' link in any of those emails.</p>
+  </div>
+  <div id="right-panel">
+    <%= render partial: "common/right_panel", locals: { markdown: @unsafe_markdown, settings: @settings } %>
+  </div>
+</div>

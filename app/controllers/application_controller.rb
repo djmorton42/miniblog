@@ -5,12 +5,27 @@ class ApplicationController < ActionController::Base
   around_action :add_expires_header
   around_action :setup_visitor_cookie
   before_action :populate_default_models
+  before_action :set_subscription_model
   before_action :set_user_instance_from_session
-                                                                                 
-  def set_user_instance_from_session                                          
-    current_user_id = session[:current_user_id]                             
-    @current_user = current_user_id.nil? ? nil : User.find(current_user_id) 
-  end                                                                         
+
+  def set_user_instance_from_session
+    current_user_id = session[:current_user_id]
+    @current_user = current_user_id.nil? ? nil : User.find(current_user_id)
+  end
+
+  def set_subscription_model
+    faulty_subscription_details = session[:faulty_subscription]
+
+    if faulty_subscription_details
+        faulty_subscription_details = faulty_subscription_details.with_indifferent_access
+        @subscription = Subscription.new(email: faulty_subscription_details[:email])
+        @subscription.errors[:email] += faulty_subscription_details[:errors]
+
+        session.delete(:faulty_subscription)
+    else
+        @subscription = Subscription.new
+    end
+  end
 
   def populate_default_models
     safe_renderer = Redcarpet::Render::HTML.new(escape_html: true, hard_wrap: true)
@@ -19,7 +34,7 @@ class ApplicationController < ActionController::Base
     unsafe_renderer = Redcarpet::Render::HTML.new(hard_wrap: true)
     @unsafe_markdown = Redcarpet::Markdown.new(unsafe_renderer, extensions = {})
 
-    @settings = Setting.all.first
+    @settings = Setting.get
     @categories = Category.order(:name).all
   end
 
@@ -40,9 +55,9 @@ class ApplicationController < ActionController::Base
   def setup_visitor_cookie
     visitor_id = cookies[:visitor_id] || SecureRandom.uuid
     session[:visitor_id] = visitor_id
-    
+
     yield
-    
+
     response.set_cookie(:visitor_id, visitor_id)
   end
 

@@ -1,0 +1,13 @@
+'<%= @settings.blog_title %>' Subscription Request
+
+You indicated that you wish to subscribe to the blog '<%= @settings.blog_title %>'.
+
+You will receive a notification to this email address whenver a new blog post is published.
+
+You can unsubscribe at any time by clicking on the Unsubscribe link at the bottom of any notification email.
+
+You must confirm your email address in order to activate your subscription.
+
+<%= link_to('Confirm Email Address', confirm_email_subscription_url(@subscription.confirm_token)) %>
+
+If you have received this email in error, please disregard it.
