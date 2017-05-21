@@ -1,4 +1,6 @@
 class SubscriptionsController < ApplicationController
+  skip_after_action :track_request
+
   def create
     subscription = Subscription.subscribe(subscription_params[:email])
 

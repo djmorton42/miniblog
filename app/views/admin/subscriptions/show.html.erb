@@ -1,0 +1,16 @@
+<div class="row">
+  <h2>Blog Subscribers</h2>
+</div>
+<div class="row">
+  <table>
+    <tr>
+      <th>Email</th><th>Subscribed At</th>
+    </tr>
+    <% @subscriptions.each do |sub| %>
+      <tr>
+        <td><%= sub[0] %></td>
+        <td><%= format_datetime(sub[1]) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
