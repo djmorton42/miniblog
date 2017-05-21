@@ -1,0 +1,2 @@
+class AlreadySubscribedError < StandardError
+end
