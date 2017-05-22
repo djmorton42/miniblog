@@ -25,8 +25,9 @@ class EntriesController < ApplicationController
     begin
       verify_recaptcha(params['g-recaptcha-response'])
       @comment.save
-    rescue RecaptchaError
-      render(text: 'Sorry, you might be a robot!') and return
+    rescue RecaptchaError => e
+      logger.warn("Recaptcha Error: #{e.message}")
+      render(text: 'Sorry, you might be a robot!', status: :forbidden) and return
     end
 
     if @comment.errors.any?
@@ -53,13 +54,13 @@ class EntriesController < ApplicationController
     recaptcha_endpoint = 'https://www.google.com/recaptcha/api/siteverify'
     recaptcha_response = Net::HTTP.post_form(URI.parse(recaptcha_endpoint), params)
 
-    logger.warn("Recaptcha params: #{params} result: #{recaptcha_response.body}")
+    logger.warn("Recaptcha Result: #{recaptcha_response.body}")
 
     response_json = JSON.parse(recaptcha_response.body).with_indifferent_access
 
-    raise RecaptchaError unless response_json[:success]
-    raise RecaptchaError unless valid_recaptcha_domain(response_json[:hostname])
-    raise RecaptchaError unless (Time.now - Time.parse(response_json[:challenge_ts])) < 60
+    raise RecaptchaError, "Unsuccessful Recaptcha" unless response_json[:success]
+    raise RecaptchaError, "Invalid Recaptcha Hostname" unless valid_recaptcha_domain(response_json[:hostname])
+    raise RecaptchaError, "Recaptcha Timestamp to distant" unless (Time.now - Time.parse(response_json[:challenge_ts])) < 60
   end
 
   def valid_recaptcha_domain(domain)
