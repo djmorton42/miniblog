@@ -6,32 +6,37 @@
 </div>
 <div class="row">
   <%= form_for @comment, url: "/entries/#{@entry.id}/comments", method: 'POST' do |f| %>
-    <div class="row">                                                   
-      <div class="medium-6 columns">                          
+    <div class="row">
+      <div class="medium-6 columns">
         <div class="<%= @comment.errors[:commenter_name].any? ? "error" : "" %>">
-          <%= f.label(:commenter_name, "Your Name:") %>                  
-          <%= f.text_field(:commenter_name) %>                            
-          <% if @comment.errors[:commenter_name].any? %>                   
+          <%= f.label(:commenter_name, "Your Name:") %>
+          <%= f.text_field(:commenter_name) %>
+          <% if @comment.errors[:commenter_name].any? %>
             <small class="error"><%= @comment.errors[:commenter_name].join(', ') %></small>
-          <% end %>                                                   
-        </div>              
-      </div>
-    </div>
-    <div class="row">                                                   
-      <div class="medium-12 columns">                          
-        <div class="<%= @comment.errors[:comment].any? ? "error" : "" %>">
-          <%= f.label(:comment, "Comments:") %>                  
-          <%= f.text_area(:comment, rows: 20) %>                            
-          <% if @comment.errors[:comment].any? %>                   
-            <small class="error"><%= @comment.errors[:comment].join(', ') %></small>
-          <% end %>                                                   
-        </div>              
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="medium-6 columns">                          
-        <%= f.submit(class: "button round success") %>                       
-      </div> 
+      <div class="medium-12 columns">
+        <div class="<%= @comment.errors[:comment].any? ? "error" : "" %>">
+          <%= f.label(:comment, "Comments:") %>
+          <%= f.text_area(:comment, rows: 20) %>
+          <% if @comment.errors[:comment].any? %>
+            <small class="error"><%= @comment.errors[:comment].join(', ') %></small>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        <div class="g-recaptcha" data-sitekey="6LcldiIUAAAAAHK8eWL9Yu6kSreZdUZVu3nchpy_"></div>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 15px;">
+      <div class="medium-6 columns">
+        <%= f.submit(class: "button round success") %>
+      </div>
     </div>
   <% end %>
 </div>
