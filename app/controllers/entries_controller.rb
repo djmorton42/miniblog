@@ -60,7 +60,16 @@ class EntriesController < ApplicationController
 
     raise RecaptchaError, "Unsuccessful Recaptcha" unless response_json[:success]
     raise RecaptchaError, "Invalid Recaptcha Hostname" unless valid_recaptcha_domain(response_json[:hostname])
-    raise RecaptchaError, "Recaptcha Timestamp to distant" unless (Time.now - Time.parse(response_json[:challenge_ts])) < 60
+    raise RecaptchaError, "Recaptcha Timestamp to distant" unless validate_recaptcha_ts(response_json)
+  end
+
+  def validate_recaptcha_ts(response_json)
+    now = Time.now.utc
+    parsed_time = Time.parse(response_json[:challenge_ts])
+
+    logger.warn("Recaptcha Time Check: Now: #{now} - Challenge Time: #{parsed_time}")
+
+    return (now - parsed_time) < 60
   end
 
   def valid_recaptcha_domain(domain)
